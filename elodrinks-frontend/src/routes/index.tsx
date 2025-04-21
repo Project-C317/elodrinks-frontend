@@ -7,6 +7,9 @@ export default function AppRoutes() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        {/* Você pode adicionar outras rotas abaixo, ex: */}
+        {/* <Route path="/sobre" element={<About />} /> */}
+        {/* <Route path="/contato" element={<Contact />} /> */}
       </Routes>
     </BrowserRouter>
   )
