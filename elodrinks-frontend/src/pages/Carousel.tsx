@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const imagesCarousel = [
   { src: 'src/images/empresa1.webp', alt: 'Logo da Empresa 1' },
