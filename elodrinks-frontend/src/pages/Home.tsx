@@ -48,8 +48,8 @@ export default function Home() {
                 marginTop: '20px'
               }}
             >
-              <img src='src\images\equipe.png' alt='Equipe 1' className='fotoAtras' />
-              <img src='src\images\equipe2.png' alt='Equipe 2' className='fotoFrente' />
+              <img src='/elodrinks-frontend/src/images/equipe.png' alt='Equipe 1' className='fotoAtras' />
+              <img src='/elodrinks-frontend/src/images/equipe2.png' alt='Equipe 2' className='fotoFrente' />
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function Home() {
         <div className='flexBoxGeral'>
           <div className='grid-3 tipo1'>
             <picture>
-              <img src='src\images\equipe.png' alt='imagem 1' />
+              <img src='/elodrinks-frontend/src/images/equipe.png' alt='imagem 1' />
             </picture>
             <p>
               Drinks <br /> Personalizados
@@ -69,7 +69,7 @@ export default function Home() {
           </div>
           <div className='grid-3 tipo2'>
             <picture>
-              <img src='src\images\equipe2.png' alt='imagem 1' />
+              <img src='/elodrinks-frontend/src/images/equipe2.png' alt='imagem 1' />
             </picture>
             <p>
               Eventos <br /> Corporativos
@@ -77,7 +77,7 @@ export default function Home() {
           </div>
           <div className='grid-3 tipo1'>
             <picture>
-              <img src='src\images\equipe.png' alt='imagem 1' />
+              <img src='/elodrinks-frontend/src/images/equipe.png' alt='imagem 1' />
             </picture>
             <p>
               Coffee <br /> Break
@@ -85,7 +85,7 @@ export default function Home() {
           </div>
           <div className='grid-3 tipo2'>
             <picture>
-              <img src='src\images\equipe2.png' alt='imagem 1' />
+              <img src='/elodrinks-frontend/src/images/equipe2.png' alt='imagem 1' />
             </picture>
             <p>
               Eventos <br /> Corporativos
@@ -93,7 +93,7 @@ export default function Home() {
           </div>
           <div className='grid-3 tipo1'>
             <picture>
-              <img src='src\images\equipe.png' alt='imagem 1' />
+              <img src='/elodrinks-frontend/src/images/equipe.png' alt='imagem 1' />
             </picture>
             <p>
               Eventos <br /> Corporativos
@@ -101,7 +101,7 @@ export default function Home() {
           </div>
           <div className='grid-3 tipo2'>
             <picture>
-              <img src='src\images\equipe2.png' alt='imagem 1' />
+              <img src='/elodrinks-frontend/src/images/equipe2.png' alt='imagem 1' />
             </picture>
             <p>
               Eventos <br /> Corporativos
@@ -170,7 +170,7 @@ export default function Home() {
           <div className='grid-2 fundo-lateral'>
             <p className='text-lateral'>BARTENDER</p>
             <img
-              src='src\images\imagem-cardapio1.png'
+              src='/elodrinks-frontend/src/images/imagem-cardapio1.png'
               alt='Equipe Bartender'
               style={{
                 width: '100%',
