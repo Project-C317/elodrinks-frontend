@@ -122,6 +122,45 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* CARDÁPIO E ESPECIALISTAS */}
+      <section style={{ backgroundColor: "#5D4A38", padding: "2rem", color: "#fff" }}>
+        <h2 style={{ textAlign: "center" }}>CARDÁPIO</h2>
+        <p style={{ textAlign: "center", marginBottom: "2rem" }}>
+          Selecione o tipo de cardápio que pretende servir para visualizar nossas melhores opções
+        </p>
+        <div style={{ display: "flex", justifyContent: "center", gap: "2rem", flexWrap: "wrap" }}>
+          <div style={{ border: "2px solid white", padding: "1.5rem", width: "200px", textAlign: "center" }}>
+            <img src="src\images\drink-icon.png" alt="Drink Especial" style={{ height: "40px" }} />
+            <p>DRINK ESPECIAL</p>
+          </div>
+          <div style={{ border: "2px solid white", padding: "1.5rem", width: "200px", textAlign: "center" }}>
+            <img src="src\images\caipirinha-icon.png" alt="Bar de Caipirinhas" style={{ height: "40px" }} />
+            <p>BAR DE CAIPIRINHAS</p>
+          </div>
+          <div style={{ border: "2px solid white", padding: "1.5rem", width: "200px", textAlign: "center" }}>
+            <img src="src\images\softdrinks-icon.png" alt="Soft Drinks" style={{ height: "40px" }} />
+            <p>SOFT DRINKS</p>
+          </div>
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "4rem", flexWrap: "wrap" }}>
+          <div style={{ flex: 1, minWidth: "300px" }}>
+            <h3>ESPECIALISTAS PARA O SEU EVENTO</h3>
+            <p>
+              Oferecemos serviços profissionais para eventos e estabelecimentos. Contamos com uma equipe especializada,
+              incluindo bartender, barbacks, cheffes, copeiras e coordenadores, prontos para garantir o sucesso do seu
+              evento ou operação. Entre em contato e saiba como podemos atender às suas necessidades!
+            </p>
+            <button style={{ backgroundColor: "white", color: "#5D4A38", border: "none", padding: "0.5rem 1rem", marginTop: "1rem" }}>
+              SAIBA MAIS
+            </button>
+          </div>
+          <div style={{ flex: 1, minWidth: "300px", position: "relative", textAlign: "right" }}>
+            <img src="src\images\equipe.png" alt="Equipe Bartender" style={{ width: "100%", maxWidth: "500px" }} />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
