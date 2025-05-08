@@ -18,7 +18,7 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className='hero-section'>
-        <img src={`src/images/banner${currentIndex + 1}.png`} alt={`Banner ${currentIndex + 1}`} />
+        <img src={`/images/banner${currentIndex + 1}.png`} alt={`Banner ${currentIndex + 1}`} />
         <div className='divTexto'>
           <h1>
             Trabalhamos com os melhores produtos do mercado,
