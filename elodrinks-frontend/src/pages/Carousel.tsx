@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 
 const imagesCarousel = [
-  { src: '/elodrinks-frontend/src/images/empresa1.webp', alt: 'Logo da Empresa 1' },
-  { src: '/elodrinks-frontend/src/images/empresa2.webp', alt: 'Logo da Empresa 2' },
-  { src: '/elodrinks-frontend/src/images/empresa3.webp', alt: 'Logo da Empresa 3' },
-  { src: '/elodrinks-frontend/src/images/empresa4.webp', alt: 'Logo da Empresa 4' },
-  { src: '/elodrinks-frontend/src/images/empresa5.webp', alt: 'Logo da Empresa 5' },
-  { src: '/elodrinks-frontend/src/images/empresa6.webp', alt: 'Logo da Empresa 6' },
-  { src: '/elodrinks-frontend/src/images/empresa7.webp', alt: 'Logo da Empresa 7' },
-  { src: '/elodrinks-frontend/src/images/empresa8.webp', alt: 'Logo da Empresa 8' },
-  { src: '/elodrinks-frontend/src/images/empresa9.webp', alt: 'Logo da Empresa 9' },
-  { src: '/elodrinks-frontend/src/images/empresa10.webp', alt: 'Logo da Empresa 10' }
+  { src: '/images/empresa1.webp', alt: 'Logo da Empresa 1' },
+  { src: '/images/empresa2.webp', alt: 'Logo da Empresa 2' },
+  { src: '/images/empresa3.webp', alt: 'Logo da Empresa 3' },
+  { src: '/images/empresa4.webp', alt: 'Logo da Empresa 4' },
+  { src: '/images/empresa5.webp', alt: 'Logo da Empresa 5' },
+  { src: '/images/empresa6.webp', alt: 'Logo da Empresa 6' },
+  { src: '/images/empresa7.webp', alt: 'Logo da Empresa 7' },
+  { src: '/images/empresa8.webp', alt: 'Logo da Empresa 8' },
+  { src: '/images/empresa9.webp', alt: 'Logo da Empresa 9' },
+  { src: '/images/empresa10.webp', alt: 'Logo da Empresa 10' }
 ];
 
 const Carousel = () => {

@@ -398,7 +398,7 @@ button:focus-visible {
 }
 
 .empresas {
-  background: url('/elodrinks-frontend/src/images/tela4.png') no-repeat center center;
+  background: url('/images/tela4.png') no-repeat center center;
   background-attachment: fixed;
   background-size: cover;
 }
