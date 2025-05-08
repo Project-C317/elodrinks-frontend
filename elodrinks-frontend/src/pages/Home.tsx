@@ -161,6 +161,44 @@ export default function Home() {
           </div>
         </div>
       </section>
+  
+      {/* ELEGÂNCIA E EMPRESAS ATENDIDAS */}
+      <section style={{ backgroundColor: "#101820", color: "white", padding: "3rem 2rem" }}>
+      <h2 style={{ textAlign: "center" }}>O SABOR DA ELEGÂNCIA EM CADA GOLE</h2>
+      <div style={{ display: "flex", justifyContent: "center", gap: "5rem", margin: "2rem 0", flexWrap: "wrap" }}>
+        <div style={{ textAlign: "center" }}>
+          <h3>25</h3>
+          <p>CIDADES ATENDIDAS</p>
+        </div>
+        <div style={{ textAlign: "center" }}>
+          <h3>1200</h3>
+          <p>HORAS DE EVENTO</p>
+        </div>
+        <div style={{ textAlign: "center" }}>
+          <h3>56</h3>
+          <p>EMPRESAS ATENDIDAS</p>
+        </div>
+      </div>
+
+      <div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "center" }}>
+        <p>
+          A Elo Drinks é especializada em serviços de coquetelaria para eventos sociais e eventos corporativos. Hoje ela vem sendo
+          reconhecida no mercado de eventos corporativos e de wedding por indicações dos melhores assessores, decoradores e espaço de
+          eventos da Grande São Paulo por terem ótimos profissionais e um excelente atendimento.
+        </p>
+        <p style={{ marginTop: "1rem" }}>
+          Quando o assunto é Open Bar, a Elo Drinks vem se destacando a cada ano com inovações e personalizações para cada tipo de festa.
+        </p>
+      </div>
+
+      <h3 style={{ textAlign: "center", marginTop: "3rem" }}>ALGUMAS EMPRESAS ATENDIDAS</h3>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "2rem", marginTop: "2rem", flexWrap: "wrap" }}>
+        <img src="src\images\globo.png" alt="Globo" style={{ height: "30px" }} />
+        <img src="src\images\huawei.png" alt="Huawei" style={{ height: "30px" }} />
+        <img src="src\images\coca.png" alt="Coca-Cola" style={{ height: "30px" }} />
+        <img src="src\images\boticario.png" alt="O Boticário" style={{ height: "30px" }} />
+      </div>
+    </section>
     </div>
   );
 }
