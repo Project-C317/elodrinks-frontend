@@ -2,8 +2,8 @@ export default function Header() {
   return (
     <header className='menu-fixo'>
       <nav>
-        <a href='#quem-somos'>QUEM SOMOS</a>
-        <a href='#equipe'>EQUIPE</a>
+        <a href='#nossos-servicos'>NOSSOS SERVIÇOS</a>
+        <a href='#cardapio'>CARDAPIO</a>
         <a href='#home'>
           <svg width='171' height='49' viewBox='0 0 171 49' fill='none' xmlns='http://www.w3.org/2000/svg'>
             <path d='M29.9771 29.5846H35.8064V30.0419H29.9771V40.4499H39.4694V40.9072H27.749V19.5733L39.4694 19.5429V20.0002H29.9771V29.5834V29.5846Z' fill='#FAFAFA' />
@@ -30,8 +30,9 @@ export default function Header() {
             <path d='M20.4909 0.594826C15.9741 0.594826 12.3123 4.25661 12.3123 8.77349V46.7534C12.3123 47.2495 11.9096 47.6522 11.4135 47.6522H9.07743C8.58135 47.6522 8.17867 47.2495 8.17867 46.7534V8.77349C8.17867 4.25661 4.51688 0.594826 0 0.594826V40.3747C0 44.8698 3.62661 48.517 8.11317 48.5522H12.3159C16.8316 48.5509 20.4921 44.8892 20.4921 40.3735V0.594826H20.4909Z' fill='#FAFAFA' />
           </svg>
         </a>
+        <a href='#parceiros'>PARCEIROS</a>
         <a href='#galeria'>GALERIA</a>
-        <a href='#contato'>CONTATO</a>
+         <a href='#contato'>CONTATO</a>
       </nav>
     </header>
   );

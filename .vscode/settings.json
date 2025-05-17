@@ -1,0 +1,74 @@
+{
+  "window.zoomLevel": 0,
+  "symbols.hidesExplorerArrows": false,
+  "workbench.iconTheme": "symbols",
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontSize": 14,
+  "editor.lineHeight": 24,
+  "editor.rulers": [80, 120],
+  "editor.wordWrap": "on",
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.renderLineHighlight": "gutter",
+  "editor.fontLigatures": true,
+  "editor.parameterHints.enabled": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.cursorStyle": "line",
+  "editor.cursorBlinking": "smooth",
+  "workbench.editor.labelFormat": "short",
+  "explorer.compactFolders": false,
+  "editor.semanticHighlighting.enabled": false,
+  "editor.minimap.enabled": false,
+  "editor.tabSize": 2,
+  "editor.indentSize": "tabSize",
+  "prettier.tabWidth": 2,
+  "prettier.printWidth": 500,
+  "prettier.singleQuote": true,
+  "prettier.jsxSingleQuote": true,
+  "prettier.trailingComma": "none",
+  "prettier.semi": true,
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+  "bladeFormatter.format.indentSize": 2,
+  // Fontes instaladas no sistema: JetBrainsMono,
+  // extensoes:
+  //   Symbols,
+  //   Min Theme,
+  //   Prettier - Code formatter,
+  //   Tabnine: AI Autocomplete & Chat for Javascript, Python, ...
+  //   color highlight,
+  //   ESLint,
+  //   Intellisense for css,
+  //   JavaScript (ES6) code snippets,
+  //   Path Intellisense,
+  //   PHP intelephense,
+  // HTML CSS Class Completion,
+  "html-css-class-completion.enableEmmetSupport": true,
+  "javascript.suggest.autoImports": true,
+  "tabnine.experimentalAutoImports": true,
+  "php.validate.executablePath": "C:\\xampp\\php\\php.exe",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.commandPalette.history": 500,
+  "workbench.editor.restoreViewState": false,
+  "security.workspace.trust.banner": "never",
+  "security.workspace.trust.emptyWindow": false,
+  "files.autoSaveDelay": 300,
+  "git.openRepositoryInParentFolders": "never",
+  "files.autoSave": "afterDelay",
+  "liveServer.settings.donotShowInfoMsg": true
+}
