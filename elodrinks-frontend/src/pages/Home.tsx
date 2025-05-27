@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Carousel from "../pages/Carousel";
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
+  const navigate = useNavigate();
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -92,7 +95,7 @@ export default function Home() {
       >
         <h2>NOSSOS SERVIÇOS</h2>
         <div className="flexBoxGeral">
-          <div className="grid-3 tipo1">
+          <div className="grid-3 tipo1" onClick={() => navigate(`/servico/drinks_personalizado`)} style={{ cursor: 'pointer' }}>
             <picture>
               <img src="/images/equipe.png" alt="imagem 1" />
             </picture>
@@ -100,7 +103,7 @@ export default function Home() {
               Drinks <br /> Personalizados
             </p>
           </div>
-          <div className="grid-3 tipo2">
+          <div className="grid-3 tipo2" onClick={() => navigate(`/servico/open_bar`)} style={{ cursor: 'pointer' }}>
             <picture>
               <img src="/images/equipe2.png" alt="imagem 1" />
             </picture>
@@ -108,7 +111,7 @@ export default function Home() {
               Eventos <br /> Corporativos
             </p>
           </div>
-          <div className="grid-3 tipo1">
+          <div className="grid-3 tipo1" onClick={() => navigate(`/servico/coffee_break`)} style={{ cursor: 'pointer' }}>
             <picture>
               <img src="/images/equipe.png" alt="imagem 1" />
             </picture>
@@ -116,7 +119,7 @@ export default function Home() {
               Coffee <br /> Break
             </p>
           </div>
-          <div className="grid-3 tipo2">
+          <div className="grid-3 tipo2" onClick={() => navigate(`/servico/eventos_corporativos`)} style={{ cursor: 'pointer' }}>
             <picture>
               <img src="/images/equipe2.png" alt="imagem 1" />
             </picture>
@@ -124,7 +127,7 @@ export default function Home() {
               Eventos <br /> Corporativos
             </p>
           </div>
-          <div className="grid-3 tipo1">
+          <div className="grid-3 tipo1" onClick={() => navigate(`/servico/servicos_especiais`)} style={{ cursor: 'pointer' }}>
             <picture>
               <img src="/images/equipe.png" alt="imagem 1" />
             </picture>
@@ -132,7 +135,7 @@ export default function Home() {
               Eventos <br /> Corporativos
             </p>
           </div>
-          <div className="grid-3 tipo2">
+          <div className="grid-3 tipo2" onClick={() => navigate(`/servico/casamentos`)} style={{ cursor: 'pointer' }}>
             <picture>
               <img src="/images/equipe2.png" alt="imagem 1" />
             </picture>
