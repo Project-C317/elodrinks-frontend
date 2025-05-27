@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = 'https://elodrinks-backend.onrender.com/';
 
 const api: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
