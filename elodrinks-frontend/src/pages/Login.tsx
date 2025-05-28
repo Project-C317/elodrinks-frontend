@@ -169,7 +169,7 @@ body {
 }
 `;
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { publicApi } from "../services/api";
 import { FiLock, FiUnlock } from "react-icons/fi";
