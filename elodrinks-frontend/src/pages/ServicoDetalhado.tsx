@@ -92,7 +92,7 @@ const estilos = {
   titulo: {
     fontSize: "28px",
     marginBottom: "1rem",
-    textAlign: "center",
+    textAlign: "center" as const,
   },
   infoContainer: {
     marginBottom: "1rem",
