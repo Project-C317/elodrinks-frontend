@@ -90,6 +90,7 @@ export interface Service {
 }
 
 export interface OptionalItem {
+  [x: string]: any;
   id: string;
   name: string;
   price: number;
