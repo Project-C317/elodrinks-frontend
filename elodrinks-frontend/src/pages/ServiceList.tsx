@@ -1,0 +1,126 @@
+import { useEffect, useState } from "react";
+import { serviceApi, Service } from "../services/api";
+
+const ServiceList = () => {
+  const [services, setServices] = useState<Service[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
+
+  useEffect(() => {
+    serviceApi
+      .getAllServices()
+      .then((response) => {
+        const mappedServices = response.data.map((s: any) => ({
+          id: s._id,
+          name: s.Name,
+          description: `Evento para ${s.ClientQuantity} clientes por ${
+            s.EventDuration
+          }h no dia ${new Date(s.EventDate).toLocaleDateString()}.`,
+          price: s.FinalBudget,
+        }));
+        setServices(mappedServices);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar serviços:", error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  const closeModal = () => {
+    setSelectedService(null);
+  };
+
+  if (loading) return <p>Carregando serviços...</p>;
+
+  return (
+    <section
+      className="servicos"
+      style={{ backgroundColor: "#101820", padding: "2rem" }}
+      id="nossos-servicos"
+    >
+      <h2 style={{ color: "white" }}>NOSSOS SERVIÇOS</h2>
+      <div className="flexBoxGeral">
+        {services.map((service, index) => {
+          const imageNumber = (index % 4) + 1;
+          const imagePath = `/images/equipe${imageNumber}.png`;
+          const tipoClass = index % 2 === 0 ? "tipo1" : "tipo2";
+
+          return (
+            <div
+              key={service.id}
+              className={`grid-3 ${tipoClass}`}
+              style={{ cursor: "pointer" }}
+              onClick={() => setSelectedService(service)}
+            >
+              <picture>
+                <img
+                  src={imagePath}
+                  alt={`Imagem do serviço ${service.name}`}
+                />
+              </picture>
+              <p style={{ color: "white", textAlign: "center" }}>
+                {service.name}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Modal */}
+      {selectedService && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0,0,0,0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 9999,
+          }}
+          onClick={closeModal}
+        >
+          <div
+            style={{
+              backgroundColor: "#101820",
+              padding: "2rem",
+              borderRadius: "8px",
+              maxWidth: "500px",
+              width: "90%",
+              boxShadow: "0 0 20px rgba(0,0,0,0.3)",
+              position: "relative",
+            }}
+            onClick={(e) => e.stopPropagation()} // impede fechar ao clicar no modal
+          >
+            <button
+              onClick={closeModal}
+              style={{
+                position: "absolute",
+                top: 10,
+                right: 10,
+                background: "none",
+                border: "none",
+                fontSize: "1.5rem",
+                cursor: "pointer",
+              }}
+            >
+              &times;
+            </button>
+            <h2>{selectedService.name}</h2>
+            <p>{selectedService.description}</p>
+            <p>
+              <strong>Preço:</strong> R$ {selectedService.price.toFixed(2)}
+            </p>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+};
+
+export default ServiceList;
