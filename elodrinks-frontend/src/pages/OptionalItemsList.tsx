@@ -157,7 +157,7 @@ export function Cardapio() {
             sucesso do seu evento ou operação. Entre em contato e saiba como
             podemos atender às suas necessidades!
           </p>
-          <div className="btn1">SOLICITE UM ORÇAMENTO</div>
+          <a href='#contato' className="btn1"> SOLICITE UM ORÇAMENTO</a>
         </div>
         <div className="grid-2 fundo-lateral">
           <p className="text-lateral">BARTENDER</p>
