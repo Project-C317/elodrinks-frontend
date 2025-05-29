@@ -104,6 +104,21 @@ nav {
   gap: 10%;
 }
 
+.boxPrincipal {
+  display: grid;
+  gap: 3%;
+  width: fit-content;
+}
+
+.boxConfig {
+  display: inline-block;
+  justify-content: center;
+  max-width: fit-content;
+  padding: 15px;
+  border: 1px solid #fff;
+  margin: 10px;
+}
+
 .flex2 {
   display: flex;
   align-items: center;
@@ -567,7 +582,7 @@ nav {
   outline: none;
 }
 
-.contato form{
+.contato form {
   max-width: 1100px;
   margin: 0 auto;
 }

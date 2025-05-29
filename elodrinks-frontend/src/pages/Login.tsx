@@ -173,6 +173,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { publicApi } from "../services/api";
 import { FiLock, FiUnlock } from "react-icons/fi";
+import { jwtDecode } from "jwt-decode";
 
 type User = {
   id: number;
@@ -223,6 +224,7 @@ const Login: React.FC = () => {
   const [signupPhone, setSignupPhone] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
   const [signupConfirmPassword, setSignupConfirmPassword] = useState("");
+  const [signupRole, setSignupRole] = useState("user"); // padrão: user
   const [users] = useState<User[]>(getInitialUsers);
   const navigate = useNavigate();
 
@@ -251,10 +253,18 @@ const Login: React.FC = () => {
 
       // Salva o token no localStorage
       localStorage.setItem("token", token);
+
+      // Decodifica o token para obter o role
+      const decodedToken = jwtDecode<{ role: string }>(token);
+
       setErrorMessage("");
 
       setTimeout(() => {
-        navigate("/home");
+        if (decodedToken.role === "admin") {
+          navigate("/config");
+        } else {
+          navigate("/home");
+        }
       }, 1500);
     } catch {
       setErrorMessage("Email ou senha incorretos!");
@@ -279,6 +289,7 @@ const Login: React.FC = () => {
         Email: signupEmail,
         Phone: signupPhone,
         Password: signupPassword,
+        Role: signupRole,
       };
 
       await publicApi.registerUser(newUser);
@@ -516,6 +527,17 @@ const Login: React.FC = () => {
                   {showPassword.confirmPassword ? <FiUnlock /> : <FiLock />}
                 </button>
               </div>
+              <div className="form-group">
+                <select
+                  className="form-input"
+                  value={signupRole}
+                  onChange={(e) => setSignupRole(e.target.value)}
+                >
+                  <option value="user">Usuário</option>
+                  <option value="admin">Administrador</option>
+                </select>
+              </div>
+
               <button type="submit" className="submit-btn">
                 Criar Conta
               </button>
