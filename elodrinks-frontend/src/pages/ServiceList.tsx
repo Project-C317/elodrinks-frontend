@@ -49,7 +49,7 @@ const ServiceList = () => {
       <div className="flexBoxGeral">
         {services.map((service, index) => {
           const imageNumber = (index % 4) + 1;
-          const imagePath = `/images/equipe${imageNumber}.png`;
+          const imagePath = `/images/servicos${imageNumber}.webp`;
           const tipoClass = index % 2 === 0 ? "tipo1" : "tipo2";
 
           return (
@@ -75,46 +75,12 @@ const ServiceList = () => {
 
       {/* Modal */}
       {selectedService && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 9999,
-          }}
-          onClick={closeModal}
-        >
+        <div className="modalServicos" onClick={closeModal}>
           <div
-            style={{
-              backgroundColor: "#101820",
-              padding: "2rem",
-              borderRadius: "8px",
-              maxWidth: "500px",
-              width: "90%",
-              boxShadow: "0 0 20px rgba(0,0,0,0.3)",
-              border: "1px solid rgba(255,255,255,0.4)",
-              position: "relative",
-            }}
-            onClick={(e) => e.stopPropagation()} // impede fechar ao clicar no modal
+            className="div-modalServicos"
+            onClick={(e) => e.stopPropagation()}
           >
-            <button
-              onClick={closeModal}
-              style={{
-                position: "absolute",
-                top: 10,
-                right: 10,
-                background: "none",
-                border: "none",
-                fontSize: "2.5rem",
-                cursor: "pointer",
-              }}
-            >
+            <button onClick={closeModal} className="fechar-modalServicos">
               &times;
             </button>
             <h2>{selectedService.Name}</h2>

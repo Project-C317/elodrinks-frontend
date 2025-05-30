@@ -3,12 +3,16 @@ import { useNavigate } from "react-router-dom";
 
 export default function UserControl() {
   const [showMenu, setShowMenu] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null); // Tipagem explícita
+  const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
+  };
+
+  const handleGoHome = () => {
+    navigate("/home");
   };
 
   useEffect(() => {
@@ -59,8 +63,11 @@ export default function UserControl() {
           <button className="botaoDeslogar2" onClick={() => setShowMenu(false)}>
             Cancelar
           </button>
+          <button className="botaoDeslogar4" onClick={handleGoHome}>
+             Home
+          </button>
           <button className="botaoDeslogar3" onClick={handleLogout}>
-            Deslogar ✖
+            Deslogar
           </button>
         </div>
       )}

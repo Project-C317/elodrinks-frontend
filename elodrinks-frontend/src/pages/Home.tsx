@@ -24,7 +24,7 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="hero-section" id="home">
         <img
-          src={`/images/banner${currentIndex + 1}.png`}
+          src={`/images/banner${currentIndex + 1}.jpg`}
           alt={`Banner ${currentIndex + 1}`}
         />
         <div className="divTexto">

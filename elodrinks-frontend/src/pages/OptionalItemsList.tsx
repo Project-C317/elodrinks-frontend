@@ -178,71 +178,30 @@ export function Cardapio() {
       </div>
 
       {modalOpen && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 9999,
-          }}
-          onClick={handleCloseModal}
-        >
+        <div className="modalOpcional" onClick={handleCloseModal}>
           <div
             onClick={(e) => e.stopPropagation()}
-            style={{
-              backgroundColor: "#101820",
-              padding: "2rem",
-              borderRadius: "8px",
-              maxWidth: "500px",
-              width: "90%",
-              boxShadow: "0 0 20px rgba(0,0,0,0.3)",
-              position: "relative",
-              maxHeight: "80vh",
-              overflowY: "auto",
-            }}
+            className="div-modalOpcional"
           >
-            <button
-              onClick={handleCloseModal}
-              style={{
-                position: "absolute",
-                top: 10,
-                right: 10,
-                background: "none",
-                border: "none",
-                fontSize: "1.5rem",
-                cursor: "pointer",
-                color: "#fff",
-              }}
-            >
+            <button onClick={handleCloseModal} className="fechar-modalOpcional">
               &times;
             </button>
-            <h2 style={{ color: "#fff", marginBottom: "2rem" }}>
-              Drinks
-            </h2>
+            <h2 style={{marginBottom: "2rem" }}>Drinks</h2>
             {loading ? (
-              <p style={{ color: "#ccc" }}>Carregando...</p>
+              <p>Carregando...</p>
             ) : (
-              <ul style={{ color: "#eee", paddingLeft: "1.2rem" }}>
+              <ul style={{paddingLeft: "1.2rem" }}>
                 {optionalItems.map((item) => (
                   <div key={item._id} className="optional-list">
-                    <p>
+                    <p style={{textTransform: "uppercase"}}>
                       <b>{item.Name}</b>
                     </p>
+                    <p><b>Quantidade: </b> {item.Quantity}</p>
+                    <p><b>Preço por unidade:</b> R$ {item.PricePerUnit.toFixed(2)}</p>
                     <p>
-                      Quantidade: {item.Quantity}
+                      <b>Preço individual:</b> R$ {item.IndividualPrice.toFixed(2)}
                     </p>
-                    <p>
-                      Preço por unidade: R$ {item.PricePerUnit.toFixed(2)}
-                    </p>
-                    <p>
-                      Preço individual: R$ {item.IndividualPrice.toFixed(2)}
-                    </p>
+                    <div className="p-linha"></div>
                   </div>
                 ))}
               </ul>
