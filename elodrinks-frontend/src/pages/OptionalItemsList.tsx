@@ -10,10 +10,12 @@ export function Cardapio() {
     setLoading(true);
     try {
       const response = await optionalApi.getAllOptionalItems();
-      const normalizedItems = response.data.map((item) => ({
-        id: item.id,
-        name: item.Name,
-        price: item.PricePerUnit,
+      const normalizedItems = response.data.map((item: any) => ({
+        _id: item._id,
+        Name: item.Name,
+        PricePerUnit: item.PricePerUnit,
+        Quantity: item.Quantity,
+        IndividualPrice: item.IndividualPrice,
       }));
       setOptionalItems(normalizedItems);
       setModalOpen(true);
@@ -157,7 +159,10 @@ export function Cardapio() {
             sucesso do seu evento ou operação. Entre em contato e saiba como
             podemos atender às suas necessidades!
           </p>
-          <a href='#contato' className="btn1"> SOLICITE UM ORÇAMENTO</a>
+          <a href="#contato" className="btn1">
+            {" "}
+            SOLICITE UM ORÇAMENTO
+          </a>
         </div>
         <div className="grid-2 fundo-lateral">
           <p className="text-lateral">BARTENDER</p>
@@ -225,8 +230,8 @@ export function Cardapio() {
             ) : (
               <ul style={{ color: "#eee", paddingLeft: "1.2rem" }}>
                 {optionalItems.map((item) => (
-                  <li key={item.id} style={{ marginBottom: "0.5rem" }}>
-                    {item.name} - R$ {item.price.toFixed(2)}
+                  <li key={item._id} style={{ marginBottom: "0.5rem" }}>
+                    {item.Name} - R$ {item.PricePerUnit.toFixed(2)}
                   </li>
                 ))}
               </ul>

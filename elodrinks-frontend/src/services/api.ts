@@ -83,17 +83,24 @@ export interface UserBackend {
 }
 
 export interface Service {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
+  _id: string;
+  Name: string;
+  BasePrice: number;
+  ClientQuantity: number,
+  EventDuration: number,
+  EventDate: Date,
+  OptionalItems: OptionalItem[],
+  FinalBudget: number,
+  DownPayment: number,
+  FinalPayment: number
 }
 
 export interface OptionalItem {
-  [x: string]: any;
-  id: string;
-  name: string;
-  price: number;
+  _id: string;
+  Name: string;
+  PricePerUnit: number;
+  Quantity: number;
+  IndividualPrice: number;
 }
 
 export const publicApi = {
@@ -119,23 +126,23 @@ export const userApi = {
 
 export const serviceApi = {
   getAllServices: (): Promise<{ data: Service[] }> => api.get('/services'),
-  getServiceById: (id: string): Promise<{ data: Service }> => api.get(`/services/${id}`),
-  createService: (data: Omit<Service, 'id'>): Promise<{ data: Service }> =>
+  getServiceById: (_id: string): Promise<{ data: Service }> => api.get(`/services/${_id}`),
+  createService: (data: Omit<Service, '_id'>): Promise<{ data: Service }> =>
     api.post('/services', data),
-  updateServiceById: (id: string, data: Omit<Service, 'id'>): Promise<{ data: Service }> =>
-    api.put(`/services/${id}`, data),
-  deleteServiceById: (id: string): Promise<void> => api.delete(`/services/${id}`),
+  updateServiceById: (_id: string, data: Omit<Service, '_id'>): Promise<{ data: Service }> =>
+    api.put(`/services/${_id}`, data),
+  deleteServiceById: (_id: string): Promise<void> => api.delete(`/services/${_id}`),
 };
 
 export const optionalApi = {
   getAllOptionalItems: (): Promise<{ data: OptionalItem[] }> => api.get('/optional-items'),
-  getOptionalItemById: (id: string): Promise<{ data: OptionalItem }> =>
-    api.get(`/optional-items/${id}`),
-  createOptionalItem: (data: Omit<OptionalItem, 'id'>): Promise<{ data: OptionalItem }> =>
+  getOptionalItemById: (_id: string): Promise<{ data: OptionalItem }> =>
+    api.get(`/optional-items/${_id}`),
+  createOptionalItem: (data: Omit<OptionalItem, '_id'>): Promise<{ data: OptionalItem }> =>
     api.post('/optional-items', data),
-  updateOptionalItemById: (id: string, data: Omit<OptionalItem, 'id'>): Promise<{ data: OptionalItem }> =>
-    api.put(`/optional-items/${id}`, data),
-  deleteOptionalItemById: (id: string): Promise<void> => api.delete(`/optional-items/${id}`),
+  updateOptionalItemById: (_id: string, data: Omit<OptionalItem, '_id'>): Promise<{ data: OptionalItem }> =>
+    api.put(`/optional-items/${_id}`, data),
+  deleteOptionalItemById: (_id: string): Promise<void> => api.delete(`/optional-items/${_id}`),
 };
 
 export default api;

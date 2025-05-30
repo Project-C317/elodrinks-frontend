@@ -11,12 +11,16 @@ const ServiceList = () => {
       .getAllServices()
       .then((response) => {
         const mappedServices = response.data.map((s: any) => ({
-          id: s._id,
-          name: s.Name,
-          description: `Evento para ${s.ClientQuantity} clientes por ${
-            s.EventDuration
-          }h no dia ${new Date(s.EventDate).toLocaleDateString()}.`,
-          price: s.FinalBudget,
+          _id: s._id,
+          Name: s.Name,
+          BasePrice: s.BasePrice,
+          ClientQuantity: s.ClientQuantity,
+          EventDuration: s.EventDuration,
+          EventDate: new Date(s.EventDate),
+          OptionalItems: s.OptionalItems || [],
+          FinalBudget: s.FinalBudget,
+          DownPayment: s.DownPayment,
+          FinalPayment: s.FinalPayment,
         }));
         setServices(mappedServices);
       })
@@ -49,7 +53,7 @@ const ServiceList = () => {
 
           return (
             <div
-              key={service.id}
+              key={service._id}
               className={`grid-3 ${tipoClass}`}
               style={{ cursor: "pointer" }}
               onClick={() => setSelectedService(service)}
@@ -57,11 +61,11 @@ const ServiceList = () => {
               <picture>
                 <img
                   src={imagePath}
-                  alt={`Imagem do serviço ${service.name}`}
+                  alt={`Imagem do serviço ${service.Name}`}
                 />
               </picture>
               <p style={{ color: "white", textAlign: "center" }}>
-                {service.name}
+                {service.Name}
               </p>
             </div>
           );
@@ -111,10 +115,9 @@ const ServiceList = () => {
             >
               &times;
             </button>
-            <h2>{selectedService.name}</h2>
-            <p>{selectedService.description}</p>
+            <h2>{selectedService.Name}</h2>
             <p>
-              <strong>Preço:</strong> R$ {selectedService.price.toFixed(2)}
+              <strong>Preço:</strong> R$ {selectedService.BasePrice.toFixed(2)}
             </p>
           </div>
         </div>
