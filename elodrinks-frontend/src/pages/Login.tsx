@@ -42,7 +42,7 @@ const style = `
   .video-bg {
     position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
-    object-fit: cover; z-index: -1; opacity: 0.2;
+    object-fit: cover; z-index: -1; opacity: 0.15;
   }
 
   /* Container genérico com overlay escuro */
@@ -51,40 +51,52 @@ const style = `
     z-index: 1;
     min-height: 100vh;
     padding: 20px 3% 20px 20px; /* 3% à direita, 20px nas outras */
+    background: transparent;
   }
 
   /* Quando houver SVG ao lado, usa flex e alinha à direita */
   .container.with-svg {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 2rem;
+    position: static;
+    display: block;
+    justify-content: center;
+    padding:0;
   }
 
-  .display-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10%;
+  /* Ajuste do SVG */
+  .svg-wrapper {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
   }
+  .svg-wrapper svg {
+    width: 250px;
+    height: auto;
+    fill: rgb(247,246,243);
+  }
+  
 
   /* Card glassmorphism */
   .form-container {
-    position: relative;
+    position: fixed;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 2;
-    width: 500px;
-    max-width: 100%;
-    padding: 25px;
+    width: 420px;
+    padding: 40px;
     border-radius: 16px;
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    background: none;
+    //border: 1px solid rgba(255, 255, 255, 0.2);
+    //box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
     transition: transform 0.3s ease;
   }
   .form-container:hover {
-    transform: translateY(-4px);
+    transform: translate() translateY(-4px);
   }
+
 
   .form-toggle {
     display: flex; position: relative; overflow: hidden;
