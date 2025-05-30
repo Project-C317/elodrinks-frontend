@@ -79,7 +79,7 @@ const style = `
 
   /* Card glassmorphism */
   .form-container {
-    position: fixed;
+    position: absolute;
     top: 200px;
     left: 50%;
     transform: translateX(-50%);
