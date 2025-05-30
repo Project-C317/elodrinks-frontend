@@ -80,7 +80,7 @@ nav {
 }
 
 .footer .espacolateral {
-  margin-left: 50px;
+  margin-left: 80px;
 }
 
 .footer .flexBoxGeral {
@@ -334,6 +334,7 @@ nav {
   font-weight: 700;
   width: fit-content;
   transition: 0.3s;
+  text-decoration: none;
 }
 
 .btn1:hover {
@@ -849,4 +850,12 @@ aside {
 .botaoDeslogar3:hover,
 .botaoDeslogar2:hover {
   transform: scale(1.1);
+}
+
+.optional-list{
+  border-bottom: 1px solid #ffffff40;
+}
+
+.optional-list p{
+  text-align: left;
 }

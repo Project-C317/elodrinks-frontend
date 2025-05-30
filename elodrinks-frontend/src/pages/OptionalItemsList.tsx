@@ -223,16 +223,27 @@ export function Cardapio() {
               &times;
             </button>
             <h2 style={{ color: "#fff", marginBottom: "2rem" }}>
-              Itens Opcionais
+              Drinks
             </h2>
             {loading ? (
               <p style={{ color: "#ccc" }}>Carregando...</p>
             ) : (
               <ul style={{ color: "#eee", paddingLeft: "1.2rem" }}>
                 {optionalItems.map((item) => (
-                  <li key={item._id} style={{ marginBottom: "0.5rem" }}>
-                    {item.Name} - R$ {item.PricePerUnit.toFixed(2)}
-                  </li>
+                  <div key={item._id} className="optional-list">
+                    <p>
+                      <b>{item.Name}</b>
+                    </p>
+                    <p>
+                      Quantidade: {item.Quantity}
+                    </p>
+                    <p>
+                      Preço por unidade: R$ {item.PricePerUnit.toFixed(2)}
+                    </p>
+                    <p>
+                      Preço individual: R$ {item.IndividualPrice.toFixed(2)}
+                    </p>
+                  </div>
                 ))}
               </ul>
             )}

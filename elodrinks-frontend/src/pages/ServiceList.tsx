@@ -98,6 +98,7 @@ const ServiceList = () => {
               maxWidth: "500px",
               width: "90%",
               boxShadow: "0 0 20px rgba(0,0,0,0.3)",
+              border: "1px solid rgba(255,255,255,0.4)",
               position: "relative",
             }}
             onClick={(e) => e.stopPropagation()} // impede fechar ao clicar no modal
@@ -110,7 +111,7 @@ const ServiceList = () => {
                 right: 10,
                 background: "none",
                 border: "none",
-                fontSize: "1.5rem",
+                fontSize: "2.5rem",
                 cursor: "pointer",
               }}
             >
@@ -118,7 +119,36 @@ const ServiceList = () => {
             </button>
             <h2>{selectedService.Name}</h2>
             <p>
-              <strong>Preço:</strong> R$ {selectedService.BasePrice.toFixed(2)}
+              <strong>Preço base:</strong> R${" "}
+              {selectedService.BasePrice.toFixed(2)}
+            </p>
+            <p>
+              <strong>Custo por cliente:</strong> R${" "}
+              {selectedService.CostPerClient.toFixed(2)}
+            </p>
+            <p>
+              <strong>Quantidade de clientes:</strong> R${" "}
+              {selectedService.ClientQuantity.toFixed(2)}
+            </p>
+            <p>
+              <strong>Pagamento inicial:</strong> R${" "}
+              {selectedService.DownPayment.toFixed(2)}
+            </p>
+            <p>
+              <strong>Data:</strong>{" "}
+              {new Date(selectedService.EventDate).toLocaleDateString("pt-BR")}
+            </p>
+            <p>
+              <strong>Duração: </strong>
+              {selectedService.EventDuration} horas
+            </p>
+            <p>
+              <strong>Orçamento final:</strong> R${" "}
+              {selectedService.FinalBudget.toFixed(2)}
+            </p>
+            <p>
+              <strong>Pagamento final:</strong> R${" "}
+              {selectedService.FinalPayment.toFixed(2)}
             </p>
           </div>
         </div>
