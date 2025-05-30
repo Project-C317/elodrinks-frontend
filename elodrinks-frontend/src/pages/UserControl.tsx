@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function UserControl() {
   const [showMenu, setShowMenu] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null); // Tipagem explícita
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -10,21 +11,38 @@ export default function UserControl() {
     navigate("/");
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuRef.current &&
+        event.target instanceof Node &&
+        !menuRef.current.contains(event.target)
+      ) {
+        setShowMenu(false);
+      }
+    };
+
+    if (showMenu) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showMenu]);
+
   return (
     <div
+      ref={menuRef}
       style={{ position: "fixed", top: "16px", right: "16px", zIndex: 1000 }}
     >
-      {/* Botão principal (ícone) */}
       <button
+        className="botaoDeslogar"
         onClick={() => setShowMenu(!showMenu)}
-        style={{
-          background: "transparent",
-          border: "none",
-          cursor: "pointer",
-        }}
         title="Abrir opções"
       >
-        {/* Ícone SVG */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="32"
@@ -36,42 +54,12 @@ export default function UserControl() {
         </svg>
       </button>
 
-      {/* Menu suspenso */}
       {showMenu && (
-        <div
-          style={{
-            marginTop: "8px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "8px",
-            position: "absolute",
-            right: 0,
-          }}
-        >
-          {" "}
-          <button
-            onClick={() => setShowMenu(false)}
-            style={{
-              padding: "8px 20px",
-              background: "#101820",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
-          >
+        <div className="botaoDeslogar1">
+          <button className="botaoDeslogar2" onClick={() => setShowMenu(false)}>
             Cancelar
           </button>
-          <button
-            onClick={handleLogout}
-            style={{
-              padding: "8px 10px",
-              background: "#f44336",
-              color: "#fff",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
-          >
+          <button className="botaoDeslogar3" onClick={handleLogout}>
             Deslogar ✖
           </button>
         </div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import UserControl from "../pages/UserControl";
 import {
   serviceApi,
   optionalApi,
@@ -82,128 +83,143 @@ export default function Config() {
   };
 
   return (
-    <div style={{ display: "flex", color: "#fff" }}>
-      <aside
-        style={{
-          width: "200px",
-          borderRight: "1px solid #555",
-          padding: "1rem",
-        }}
-      >
-        <h3>Menu</h3>
+    <div className="config-class">
+      <UserControl />
+      <aside>
+        <h2>Menu</h2>
         <ul style={{ listStyle: "none", padding: 0 }}>
-          <li>
-            <button onClick={() => setMenu("createService")}>
-              Criar Serviços
-            </button>
+          <li className="li-menu" onClick={() => setMenu("createService")}>
+            Criar Serviços
           </li>
-          <li>
-            <button onClick={() => setMenu("deleteService")}>
-              Excluir Serviços
-            </button>
+          <li className="li-menu" onClick={() => setMenu("deleteService")}>
+            Excluir Serviços
           </li>
-          <li>
-            <button onClick={() => setMenu("createOptional")}>
-              Criar Opcionais
-            </button>
+          <li className="li-menu" onClick={() => setMenu("createOptional")}>
+            Criar Opcionais
           </li>
-          <li>
-            <button onClick={() => setMenu("deleteOptional")}>
-              Excluir Opcionais
-            </button>
+          <li className="li-menu" onClick={() => setMenu("deleteOptional")}>
+            Excluir Opcionais
           </li>
         </ul>
       </aside>
 
-      <main style={{ flex: 1, padding: "1rem" }}>
+      <main style={{ flex: 1, padding: "1rem 6rem" }}>
         {menu === "createService" && (
           <div className="boxPrincipal">
-            <h2>Criar Serviço</h2>
-            <input
-              placeholder="Nome"
-              value={newService.Name}
-              onChange={(e) =>
-                setNewService({ ...newService, Name: e.target.value })
-              }
-            />
-            <input
-              type="number"
-              placeholder="BasePrice"
-              value={newService.BasePrice}
-              onChange={(e) =>
-                setNewService({
-                  ...newService,
-                  BasePrice: parseFloat(e.target.value),
-                })
-              }
-            />
-            <input
-              type="number"
-              placeholder="ClientQuantity"
-              value={newService.ClientQuantity}
-              onChange={(e) =>
-                setNewService({
-                  ...newService,
-                  ClientQuantity: parseFloat(e.target.value),
-                })
-              }
-            />
-            <input
-              type="number"
-              placeholder="EventDuration"
-              value={newService.EventDuration}
-              onChange={(e) =>
-                setNewService({
-                  ...newService,
-                  EventDuration: parseFloat(e.target.value),
-                })
-              }
-            />
-            <input
-              type="date"
-              placeholder="Event Date"
-              value={newService.EventDate.toISOString().split("T")[0]}
-              onChange={(e) =>
-                setNewService({
-                  ...newService,
-                  EventDate: new Date(e.target.value),
-                })
-              }
-            />
-            <input
-              type="number"
-              placeholder="FinalBudget"
-              value={newService.FinalBudget}
-              onChange={(e) =>
-                setNewService({
-                  ...newService,
-                  FinalBudget: parseFloat(e.target.value),
-                })
-              }
-            />
-            <input
-              type="number"
-              placeholder="DownPayment"
-              value={newService.DownPayment}
-              onChange={(e) =>
-                setNewService({
-                  ...newService,
-                  DownPayment: parseFloat(e.target.value),
-                })
-              }
-            />
-            <input
-              type="number"
-              placeholder="FinalPayment"
-              value={newService.FinalPayment}
-              onChange={(e) =>
-                setNewService({
-                  ...newService,
-                  FinalPayment: parseFloat(e.target.value),
-                })
-              }
-            />
-            <button onClick={handleAddService}>Adicionar Serviço</button>
+            <h2>Criar um Serviço</h2>
+            <div className="lateral">
+              <p>Nome:</p>
+              <input
+                placeholder="Nome"
+                value={newService.Name}
+                onChange={(e) =>
+                  setNewService({ ...newService, Name: e.target.value })
+                }
+              />
+            </div>
+            <div className="lateral">
+              <p>Preço base R$:</p>
+              <input
+                type="number"
+                placeholder="BasePrice"
+                value={newService.BasePrice}
+                onChange={(e) =>
+                  setNewService({
+                    ...newService,
+                    BasePrice: parseFloat(e.target.value),
+                  })
+                }
+              />
+            </div>
+            <div className="lateral">
+              <p>Quantidade de pessoas:</p>
+              <input
+                type="number"
+                placeholder="ClientQuantity"
+                value={newService.ClientQuantity}
+                onChange={(e) =>
+                  setNewService({
+                    ...newService,
+                    ClientQuantity: parseFloat(e.target.value),
+                  })
+                }
+              />
+            </div>
+            <div className="lateral">
+              <p>Duração:</p>
+              <input
+                type="number"
+                placeholder="EventDuration"
+                value={newService.EventDuration}
+                onChange={(e) =>
+                  setNewService({
+                    ...newService,
+                    EventDuration: parseFloat(e.target.value),
+                  })
+                }
+              />
+            </div>
+            <div className="lateral">
+              <p>Data:</p>
+              <input
+                type="date"
+                placeholder="Event Date"
+                value={newService.EventDate.toISOString().split("T")[0]}
+                onChange={(e) =>
+                  setNewService({
+                    ...newService,
+                    EventDate: new Date(e.target.value),
+                  })
+                }
+              />
+            </div>
+            <div className="lateral">
+              <p>Orçamento Final:</p>
+              <input
+                type="number"
+                placeholder="FinalBudget"
+                value={newService.FinalBudget}
+                onChange={(e) =>
+                  setNewService({
+                    ...newService,
+                    FinalBudget: parseFloat(e.target.value),
+                  })
+                }
+              />
+            </div>
+            <div className="lateral">
+              <p>Pagamento inicial:</p>
+              <input
+                type="number"
+                placeholder="DownPayment"
+                value={newService.DownPayment}
+                onChange={(e) =>
+                  setNewService({
+                    ...newService,
+                    DownPayment: parseFloat(e.target.value),
+                  })
+                }
+              />
+            </div>
+            <div className="lateral">
+              <p>Pagamento final:</p>
+              <input
+                type="number"
+                placeholder="FinalPayment"
+                value={newService.FinalPayment}
+                onChange={(e) =>
+                  setNewService({
+                    ...newService,
+                    FinalPayment: parseFloat(e.target.value),
+                  })
+                }
+              />
+            </div>
+            <div className="btn-layout">
+              <div className="button2" onClick={handleAddService}>
+                CRIAR
+              </div>
+            </div>
           </div>
         )}
 
@@ -212,22 +228,27 @@ export default function Config() {
             <h2>Excluir Serviços</h2>
             {services.map((s) => (
               <div key={s._id} className="boxConfig">
-                <div>{s.Name}</div>
-                <div>R${s.BasePrice}</div>
-                <div>{s.ClientQuantity}</div>
-                <div>{s.EventDuration}</div>
-                <div>{new Date(s.EventDate).toLocaleDateString()}</div>
-                <div>{s.FinalBudget}</div>
-                <div>{s.DownPayment}</div>
-                <div>{s.FinalPayment}</div>
-                <button
-                  onClick={() => {
-                    console.log("Tentando deletar opcional:", s);
-                    handleDeleteService(s._id);
-                  }}
-                >
-                  Remover
-                </button>
+                <div style={{ marginBottom: "10px", textAlign: "center" }}>
+                  <b>{s.Name}</b>
+                </div>
+                <div>Preço base: R${s.BasePrice}</div>
+                <div>Quantidade: {s.ClientQuantity}</div>
+                <div>Duração do evento: {s.EventDuration}</div>
+                <div>Data: {new Date(s.EventDate).toLocaleDateString()}</div>
+                <div>Orçamento Final: {s.FinalBudget}</div>
+                <div>Pagamento inicial: {s.DownPayment}</div>
+                <div>Pagamento final: {s.FinalPayment}</div>
+                <div className="btn-layout" style={{ marginTop: "30px" }}>
+                  <div
+                    className="button2"
+                    onClick={() => {
+                      console.log("Tentando deletar opcional:", s);
+                      handleDeleteService(s._id);
+                    }}
+                  >
+                    APAGAR
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -236,47 +257,63 @@ export default function Config() {
         {menu === "createOptional" && (
           <div className="boxPrincipal">
             <h2>Criar Item Opcional</h2>
-            <input
-              placeholder="Nome"
-              value={newOptional.Name}
-              onChange={(e) =>
-                setNewOptional({ ...newOptional, Name: e.target.value })
-              }
-            />
-            <input
-              type="number"
-              placeholder="PricePerUnit"
-              value={newOptional.PricePerUnit}
-              onChange={(e) =>
-                setNewOptional({
-                  ...newOptional,
-                  PricePerUnit: parseFloat(e.target.value),
-                })
-              }
-            />
-            <input
-              type="number"
-              placeholder="Quantity"
-              value={newOptional.Quantity}
-              onChange={(e) =>
-                setNewOptional({
-                  ...newOptional,
-                  Quantity: parseFloat(e.target.value),
-                })
-              }
-            />
-            <input
-              type="number"
-              placeholder="IndividualPrice"
-              value={newOptional.IndividualPrice}
-              onChange={(e) =>
-                setNewOptional({
-                  ...newOptional,
-                  IndividualPrice: parseFloat(e.target.value),
-                })
-              }
-            />
-            <button onClick={handleAddOptional}>Adicionar Opcional</button>
+            <div className="lateral">
+              <p>Nome:</p>
+              <input
+                placeholder="Nome"
+                value={newOptional.Name}
+                onChange={(e) =>
+                  setNewOptional({ ...newOptional, Name: e.target.value })
+                }
+              />
+            </div>
+            <div className="lateral">
+              <p>Preço por unidade R$:</p>
+              <input
+                type="number"
+                placeholder="PricePerUnit"
+                value={newOptional.PricePerUnit}
+                onChange={(e) =>
+                  setNewOptional({
+                    ...newOptional,
+                    PricePerUnit: parseFloat(e.target.value),
+                  })
+                }
+              />
+            </div>
+            <div className="lateral">
+              <p>Quantidade:</p>
+              <input
+                type="number"
+                placeholder="Quantity"
+                value={newOptional.Quantity}
+                onChange={(e) =>
+                  setNewOptional({
+                    ...newOptional,
+                    Quantity: parseFloat(e.target.value),
+                  })
+                }
+              />
+            </div>
+            <div className="lateral">
+              <p>Preço individual R$:</p>
+              <input
+                type="number"
+                placeholder="IndividualPrice"
+                value={newOptional.IndividualPrice}
+                onChange={(e) =>
+                  setNewOptional({
+                    ...newOptional,
+                    IndividualPrice: parseFloat(e.target.value),
+                  })
+                }
+              />
+            </div>
+            <div className="btn-layout">
+              <div className="button2" onClick={handleAddOptional}>
+                CRIAR
+              </div>
+            </div>
           </div>
         )}
 
@@ -285,18 +322,23 @@ export default function Config() {
             <h2>Excluir Opcionais</h2>
             {optionals.map((o) => (
               <div key={o._id} className="boxConfig">
-                <div>{o.Name}</div>
-                <div>{o.PricePerUnit}</div>
-                <div>{o.Quantity}</div>
-                <div>{o.IndividualPrice}</div>
-                <button
-                  onClick={() => {
-                    console.log("Tentando deletar opcional:", o);
-                    handleDeleteOptional(o._id);
-                  }}
-                >
-                  Remover
-                </button>
+                <div style={{ marginBottom: "10px", textAlign: "center" }}>
+                  {o.Name}
+                </div>
+                <div>Quantidade: {o.Quantity}</div>
+                <div>Preço por unidade: R${o.PricePerUnit}</div>
+                <div>Preço individual: R${o.IndividualPrice}</div>
+                <div className="btn-layout" style={{ marginTop: "20px" }}>
+                  <div
+                    className="button2"
+                    onClick={() => {
+                      console.log("Tentando deletar opcional:", o);
+                      handleDeleteOptional(o._id);
+                    }}
+                  >
+                    APAGAR
+                  </div>
+                </div>
               </div>
             ))}
           </div>
