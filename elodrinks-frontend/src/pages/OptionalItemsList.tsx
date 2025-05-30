@@ -7,6 +7,7 @@ export function Cardapio() {
   const [loading, setLoading] = useState(false);
 
   const handleOpenModal = async () => {
+    setModalOpen(true);
     setLoading(true);
     try {
       const response = await optionalApi.getAllOptionalItems();
@@ -18,7 +19,6 @@ export function Cardapio() {
         IndividualPrice: item.IndividualPrice,
       }));
       setOptionalItems(normalizedItems);
-      setModalOpen(true);
     } catch (error) {
       console.error("Erro ao buscar itens opcionais", error);
     } finally {
