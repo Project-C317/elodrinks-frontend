@@ -13,10 +13,11 @@ export default function Config() {
   const [newService, setNewService] = useState<Omit<Service, "_id">>({
     Name: "",
     BasePrice: 0,
+    CostPerClient: 0,
     ClientQuantity: 0,
     EventDuration: 0,
     EventDate: new Date(),
-    OptionalItems: [],
+    optionalItems: [],
     FinalBudget: 0,
     DownPayment: 0,
     FinalPayment: 0,
@@ -39,21 +40,26 @@ export default function Config() {
     setServices(s.data);
     setOptionals(o.data);
   };
-
   const handleAddService = async () => {
-    await serviceApi.createService(newService);
-    setNewService({
-      Name: "",
-      BasePrice: 0,
-      ClientQuantity: 0,
-      EventDuration: 0,
-      EventDate: new Date(),
-      OptionalItems: [],
-      FinalBudget: 0,
-      DownPayment: 0,
-      FinalPayment: 0,
-    });
-    fetchData();
+    try {
+      console.log("Payload enviado:", newService);
+      await serviceApi.createService(newService);
+      setNewService({
+        Name: "",
+        BasePrice: 0,
+        CostPerClient: 0,
+        ClientQuantity: 0,
+        EventDuration: 0,
+        EventDate: new Date(),
+        optionalItems: [],
+        FinalBudget: 0,
+        DownPayment: 0,
+        FinalPayment: 0,
+      });
+      fetchData();
+    } catch (error) {
+      console.error("Erro ao criar serviço:", error);
+    }
   };
 
   const handleAddOptional = async () => {
@@ -103,10 +109,11 @@ export default function Config() {
         </ul>
       </aside>
 
-      <main style={{ flex: 1, padding: "1rem 6rem" }}>
+      <main className="mainConfig">
         {menu === "createService" && (
           <div className="boxPrincipal">
             <h2>Criar um Serviço</h2>
+
             <div className="lateral">
               <p>Nome:</p>
               <input
@@ -117,6 +124,7 @@ export default function Config() {
                 }
               />
             </div>
+
             <div className="lateral">
               <p>Preço base R$:</p>
               <input
@@ -126,11 +134,27 @@ export default function Config() {
                 onChange={(e) =>
                   setNewService({
                     ...newService,
-                    BasePrice: parseFloat(e.target.value),
+                    BasePrice: e.target.valueAsNumber || 0,
                   })
                 }
               />
             </div>
+
+            <div className="lateral">
+              <p>Custo por cliente: R$</p>
+              <input
+                type="number"
+                placeholder="CostPerClient"
+                value={newService.CostPerClient}
+                onChange={(e) =>
+                  setNewService({
+                    ...newService,
+                    CostPerClient: e.target.valueAsNumber || 0,
+                  })
+                }
+              />
+            </div>
+
             <div className="lateral">
               <p>Quantidade de pessoas:</p>
               <input
@@ -140,11 +164,12 @@ export default function Config() {
                 onChange={(e) =>
                   setNewService({
                     ...newService,
-                    ClientQuantity: parseFloat(e.target.value),
+                    ClientQuantity: e.target.valueAsNumber || 0,
                   })
                 }
               />
             </div>
+
             <div className="lateral">
               <p>Duração:</p>
               <input
@@ -154,11 +179,12 @@ export default function Config() {
                 onChange={(e) =>
                   setNewService({
                     ...newService,
-                    EventDuration: parseFloat(e.target.value),
+                    EventDuration: e.target.valueAsNumber || 0,
                   })
                 }
               />
             </div>
+
             <div className="lateral">
               <p>Data:</p>
               <input
@@ -173,6 +199,7 @@ export default function Config() {
                 }
               />
             </div>
+
             <div className="lateral">
               <p>Orçamento Final:</p>
               <input
@@ -182,11 +209,12 @@ export default function Config() {
                 onChange={(e) =>
                   setNewService({
                     ...newService,
-                    FinalBudget: parseFloat(e.target.value),
+                    FinalBudget: e.target.valueAsNumber || 0,
                   })
                 }
               />
             </div>
+
             <div className="lateral">
               <p>Pagamento inicial:</p>
               <input
@@ -196,11 +224,12 @@ export default function Config() {
                 onChange={(e) =>
                   setNewService({
                     ...newService,
-                    DownPayment: parseFloat(e.target.value),
+                    DownPayment: e.target.valueAsNumber || 0,
                   })
                 }
               />
             </div>
+
             <div className="lateral">
               <p>Pagamento final:</p>
               <input
@@ -210,11 +239,12 @@ export default function Config() {
                 onChange={(e) =>
                   setNewService({
                     ...newService,
-                    FinalPayment: parseFloat(e.target.value),
+                    FinalPayment: e.target.valueAsNumber || 0,
                   })
                 }
               />
             </div>
+
             <div className="btn-layout">
               <div className="button2" onClick={handleAddService}>
                 CRIAR
@@ -226,31 +256,34 @@ export default function Config() {
         {menu === "deleteService" && (
           <div>
             <h2>Excluir Serviços</h2>
-            {services.map((s) => (
-              <div key={s._id} className="boxConfig">
-                <div style={{ marginBottom: "10px", textAlign: "center" }}>
-                  <b>{s.Name}</b>
-                </div>
-                <div>Preço base: R${s.BasePrice}</div>
-                <div>Quantidade: {s.ClientQuantity}</div>
-                <div>Duração do evento: {s.EventDuration}</div>
-                <div>Data: {new Date(s.EventDate).toLocaleDateString()}</div>
-                <div>Orçamento Final: {s.FinalBudget}</div>
-                <div>Pagamento inicial: {s.DownPayment}</div>
-                <div>Pagamento final: {s.FinalPayment}</div>
-                <div className="btn-layout" style={{ marginTop: "30px" }}>
-                  <div
-                    className="button2"
-                    onClick={() => {
-                      console.log("Tentando deletar opcional:", s);
-                      handleDeleteService(s._id);
-                    }}
-                  >
-                    APAGAR
+            <div className="boxDelete">
+              {services.map((s) => (
+                <div key={s._id} className="boxConfig">
+                  <div style={{ marginBottom: "10px", textAlign: "center" }}>
+                    <b>{s.Name}</b>
+                  </div>
+                  <div>Preço base: R${s.BasePrice}</div>
+                  <div>Custo por cliente: R${s.CostPerClient}</div>
+                  <div>Quantidade: {s.ClientQuantity}</div>
+                  <div>Duração do evento: {s.EventDuration}</div>
+                  <div>Data: {new Date(s.EventDate).toLocaleDateString()}</div>
+                  <div>Orçamento Final: {s.FinalBudget}</div>
+                  <div>Pagamento inicial: {s.DownPayment}</div>
+                  <div>Pagamento final: {s.FinalPayment}</div>
+                  <div className="btn-layout" style={{ marginTop: "30px" }}>
+                    <div
+                      className="button2"
+                      onClick={() => {
+                        console.log("Tentando deletar opcional:", s);
+                        handleDeleteService(s._id);
+                      }}
+                    >
+                      APAGAR
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
 
@@ -320,27 +353,29 @@ export default function Config() {
         {menu === "deleteOptional" && (
           <div>
             <h2>Excluir Opcionais</h2>
-            {optionals.map((o) => (
-              <div key={o._id} className="boxConfig">
-                <div style={{ marginBottom: "10px", textAlign: "center" }}>
-                  {o.Name}
-                </div>
-                <div>Quantidade: {o.Quantity}</div>
-                <div>Preço por unidade: R${o.PricePerUnit}</div>
-                <div>Preço individual: R${o.IndividualPrice}</div>
-                <div className="btn-layout" style={{ marginTop: "20px" }}>
-                  <div
-                    className="button2"
-                    onClick={() => {
-                      console.log("Tentando deletar opcional:", o);
-                      handleDeleteOptional(o._id);
-                    }}
-                  >
-                    APAGAR
+            <div className="boxDelete">
+              {optionals.map((o) => (
+                <div key={o._id} className="boxConfig">
+                  <div style={{ marginBottom: "10px", textAlign: "center" }}>
+                    <b>{o.Name}</b>
+                  </div>
+                  <div>Quantidade: {o.Quantity}</div>
+                  <div>Preço por unidade: R${o.PricePerUnit}</div>
+                  <div>Preço individual: R${o.IndividualPrice}</div>
+                  <div className="btn-layout" style={{ marginTop: "20px" }}>
+                    <div
+                      className="button2"
+                      onClick={() => {
+                        console.log("Tentando deletar opcional:", o);
+                        handleDeleteOptional(o._id);
+                      }}
+                    >
+                      APAGAR
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
       </main>

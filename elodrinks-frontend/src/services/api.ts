@@ -85,11 +85,12 @@ export interface UserBackend {
 export interface Service {
   _id: string;
   Name: string;
+  CostPerClient: number,
   BasePrice: number;
   ClientQuantity: number,
   EventDuration: number,
   EventDate: Date,
-  OptionalItems: OptionalItem[],
+  optionalItems: OptionalItem[],
   FinalBudget: number,
   DownPayment: number,
   FinalPayment: number
