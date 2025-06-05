@@ -140,7 +140,7 @@ export function Cardapio() {
               strokeWidth="7"
               strokeMiterlimit="10"
               strokeLinecap="round"
-              stroke-Linejoin="round"
+              strokeLinejoin="round"
             />
           </svg>
           <h3>
