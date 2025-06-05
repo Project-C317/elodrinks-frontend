@@ -21,10 +21,19 @@ jobs:
         with:
           node-version: 18
 
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install dependencies
-        working-directory: ./elodrinks-frontend/elodrinks-frontend
         run: npm ci
 
+      - name: Build project
+        run: npm run build
+
       - name: Run tests
-        working-directory: ./elodrinks-frontend/elodrinks-frontend
         run: npm test
