@@ -202,6 +202,7 @@ const Login: React.FC = () => {
   const [signupRole, setSignupRole] = useState("user");
   const [users] = useState<User[]>(getInitialUsers);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleToggle = (login: boolean) => {
     setIsLogin(login);
@@ -218,6 +219,7 @@ const Login: React.FC = () => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await publicApi.loginUser({
         Email: loginEmail,
@@ -225,23 +227,17 @@ const Login: React.FC = () => {
       });
 
       const { token } = response.data;
-
-      // Salva o token no localStorage
       localStorage.setItem("token", token);
-
-      // Decodifica o token para obter o role
       const decodedToken = jwtDecode<{ role: string }>(token);
 
       setErrorMessage("");
-
-      if (decodedToken.role === "admin") {
-        navigate("/config");
-      } else {
-        navigate("/home");
-      }
+      if (decodedToken.role === "admin") navigate("/config");
+      else navigate("/home");
     } catch {
       setErrorMessage("Email ou senha incorretos!");
       setSuccessMessage("");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -327,7 +323,7 @@ const Login: React.FC = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <g clip-path="url(#clip0_174_2)">
+            <g clipPath="url(#clip0_174_2)">
               <path
                 d="M7.02536 211.628H25.4103V213.072H7.02536V245.915H36.9647V247.359H0V180.034L36.9647 179.939V181.383H7.02536V211.628Z"
                 fill="#e0ceaa"
@@ -523,8 +519,8 @@ const Login: React.FC = () => {
                     {showPassword.loginPassword ? <FiUnlock /> : <FiLock />}
                   </button>
                 </div>
-                <button type="submit" className="submit-btn">
-                  Entrar
+                <button type="submit" className="submit-btn" disabled={loading}>
+                  {loading ? "Carregando..." : "Entrar"}
                 </button>
               </form>
               <div className="forgot-password">
