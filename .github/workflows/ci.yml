@@ -1,4 +1,4 @@
-name: Run Build and Tests Separately
+name: Build and Test
 
 on:
   push:
@@ -35,15 +35,15 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+      - name: Upload build artefacts
+        uses: actions/upload-artifact@v3
         with:
-          name: build-output
-          path: dist/ # ou build/ conforme sua estrutura
+          name: build-dist
+          path: dist/
 
   test:
-    needs: build
     runs-on: ubuntu-latest
+    needs: build
 
     steps:
       - name: Checkout code
@@ -65,11 +65,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Download build artefacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-dist
+          path: dist/
+
       - name: Run tests
         run: npm test
-
-      - name: Upload test results (opcional)
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: coverage/ # ou outro caminho de relatório

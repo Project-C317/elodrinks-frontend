@@ -103,44 +103,44 @@ export function Cardapio() {
             <path
               d="M75.625 96.25C62.2187 100.719 47.7813 100.719 34.375 96.25L30.9375 34.375H79.0625L75.625 96.25Z"
               stroke="currentColor"
-              stroke-width="7"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="7"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M58.4375 34.375C58.4375 23.0313 67.7188 13.75 79.0625 13.75C90.4062 13.75 99.6875 23.0313 99.6875 34.375C99.6875 45.7187 90.4062 55 79.0625 55"
               stroke="currentColor"
-              stroke-width="7"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="7"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M34.375 65.3125H44C49.1563 65.3125 53.9688 64.2812 58.4375 61.875C62.9062 59.4688 68.0625 58.4375 72.875 58.4375H77.6875"
               stroke="currentColor"
-              stroke-width="7"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="7"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <circle cx="79.0625" cy="24.0625" r="3.4375" fill="currentColor" />
             <circle cx="89.375" cy="34.375" r="3.4375" fill="currentColor" />
             <path
               d="M24.0625 13.75H37.8125C41.5938 13.75 44.6875 16.8437 44.6875 20.625V34.375"
               stroke="currentColor"
-              stroke-width="7"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="7"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               d="M44.6875 48.125V65.3125"
               stroke="currentColor"
-              stroke-width="7"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="7"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              stroke-Linejoin="round"
             />
           </svg>
           <h3>
