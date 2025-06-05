@@ -1,6 +1,23 @@
 import { useEffect, useState } from "react";
 import { serviceApi, Service } from "../services/api";
 
+// Função para mapear os dados da API para o formato esperado
+export const mapServices = (services: any[]): Service[] => {
+  return services.map((s) => ({
+    _id: s._id,
+    Name: s.Name,
+    BasePrice: s.BasePrice,
+    CostPerClient: s.CostPerClient,
+    ClientQuantity: s.ClientQuantity,
+    EventDuration: s.EventDuration,
+    EventDate: new Date(s.EventDate),
+    optionalItems: s.OptionalItems || [],
+    FinalBudget: s.FinalBudget,
+    DownPayment: s.DownPayment,
+    FinalPayment: s.FinalPayment,
+  }));
+};
+
 const ServiceList = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
@@ -10,20 +27,7 @@ const ServiceList = () => {
     serviceApi
       .getAllServices()
       .then((response) => {
-        const mappedServices = response.data.map((s: any) => ({
-          _id: s._id,
-          Name: s.Name,
-          BasePrice: s.BasePrice,
-          CostPerClient: s.CostPerClient,
-          ClientQuantity: s.ClientQuantity,
-          EventDuration: s.EventDuration,
-          EventDate: new Date(s.EventDate),
-          optionalItems: s.OptionalItems || [],
-          FinalBudget: s.FinalBudget,
-          DownPayment: s.DownPayment,
-          FinalPayment: s.FinalPayment,
-        }));
-        setServices(mappedServices);
+        setServices(mapServices(response.data));
       })
       .catch((error) => {
         console.error("Erro ao buscar serviços:", error);
@@ -102,7 +106,7 @@ const ServiceList = () => {
             </p>
             <p>
               <strong>Data:</strong>{" "}
-              {new Date(selectedService.EventDate).toLocaleDateString("pt-BR")}
+              {selectedService.EventDate.toLocaleDateString("pt-BR")}
             </p>
             <p>
               <strong>Duração: </strong>

@@ -178,28 +178,44 @@ export function Cardapio() {
       </div>
 
       {modalOpen && (
-        <div className="modalOpcional" onClick={handleCloseModal}>
+        <div
+          className="modalOpcional"
+          onClick={handleCloseModal}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Modal de Drinks"
+        >
           <div
             onClick={(e) => e.stopPropagation()}
             className="div-modalOpcional"
           >
-            <button onClick={handleCloseModal} className="fechar-modalOpcional">
+            <button
+              onClick={handleCloseModal}
+              className="fechar-modalOpcional"
+              aria-label="Fechar modal"
+            >
               &times;
             </button>
-            <h2 style={{marginBottom: "2rem" }}>Drinks</h2>
+            <h2 style={{ marginBottom: "2rem" }}>CARDÁPIO</h2>
             {loading ? (
               <p>Carregando...</p>
             ) : (
-              <ul style={{paddingLeft: "1.2rem" }}>
+              <ul style={{ paddingLeft: "1.2rem" }}>
                 {optionalItems.map((item) => (
                   <div key={item._id} className="optional-list">
-                    <p style={{textTransform: "uppercase"}}>
+                    <p style={{ textTransform: "uppercase" }}>
                       <b>{item.Name}</b>
                     </p>
-                    <p><b>Quantidade: </b> {item.Quantity}</p>
-                    <p><b>Preço por unidade:</b> R$ {item.PricePerUnit.toFixed(2)}</p>
                     <p>
-                      <b>Preço individual:</b> R$ {item.IndividualPrice.toFixed(2)}
+                      <b>Quantidade: </b> {item.Quantity}
+                    </p>
+                    <p>
+                      <b>Preço por unidade:</b> R${" "}
+                      {item.PricePerUnit.toFixed(2)}
+                    </p>
+                    <p>
+                      <b>Preço individual:</b> R${" "}
+                      {item.IndividualPrice.toFixed(2)}
                     </p>
                     <div className="p-linha"></div>
                   </div>

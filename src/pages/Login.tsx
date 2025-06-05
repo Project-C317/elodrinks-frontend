@@ -184,9 +184,10 @@ const style = `
 
 const Login: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const [showPassword, setShowPassword] = useState<{ [key: string]: boolean }>(
-    {}
-  );
+  const [showPassword, setShowPassword] = useState<{ [key: string]: boolean }>({
+    signupPassword: false,
+    confirmPassword: false,
+  });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
@@ -278,9 +279,8 @@ const Login: React.FC = () => {
       setSignupPassword("");
       setSignupConfirmPassword("");
 
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      // Navega imediatamente, sem delay
+      navigate("/");
     } catch {
       setErrorMessage(
         "Erro ao criar conta. Verifique os dados e tente novamente."
@@ -462,12 +462,14 @@ const Login: React.FC = () => {
           <div className="form-container">
             <div className="form-toggle">
               <button
+                data-testid="toggle-login"
                 className={`toggle-btn${isLogin ? " active" : ""}`}
                 onClick={() => handleToggle(true)}
               >
                 Login
               </button>
               <button
+                data-testid="toggle-signup"
                 className={`toggle-btn${!isLogin ? " active" : ""}`}
                 onClick={() => handleToggle(false)}
               >
@@ -491,7 +493,7 @@ const Login: React.FC = () => {
 
             {/* Login Form */}
             <div className={`form-section${isLogin ? " active" : ""}`}>
-              <form onSubmit={handleLogin}>
+              <form onSubmit={handleLogin} data-testid="login-form">
                 <div className="form-group">
                   <input
                     type="email"
@@ -500,6 +502,7 @@ const Login: React.FC = () => {
                     required
                     value={loginEmail}
                     onChange={(e) => setLoginEmail(e.target.value)}
+                    data-testid="login-email"
                   />
                 </div>
                 <div className="form-group">
@@ -510,10 +513,12 @@ const Login: React.FC = () => {
                     required
                     value={loginPassword}
                     onChange={(e) => setLoginPassword(e.target.value)}
+                    data-testid="login-password"
                   />
                   <button
                     type="button"
                     className="show-password"
+                    data-testid="toggle-password-visibility"
                     onClick={() => handleShowPassword("loginPassword")}
                   >
                     {showPassword.loginPassword ? <FiUnlock /> : <FiLock />}
@@ -538,9 +543,10 @@ const Login: React.FC = () => {
 
             {/* Signup Form */}
             <div className={`form-section${!isLogin ? " active" : ""}`}>
-              <form onSubmit={handleSignup}>
+              <form onSubmit={handleSignup} data-testid="signup-form">
                 <div className="form-group">
                   <input
+                    data-testid="signup-name-input"
                     type="text"
                     className="form-input"
                     placeholder="Nome"
@@ -551,6 +557,7 @@ const Login: React.FC = () => {
                 </div>
                 <div className="form-group">
                   <input
+                    data-testid="signup-surname"
                     type="text"
                     className="form-input"
                     placeholder="Sobrenome"
@@ -561,6 +568,7 @@ const Login: React.FC = () => {
                 </div>
                 <div className="form-group">
                   <input
+                    data-testid="signup-age"
                     type="text"
                     className="form-input"
                     placeholder="Idade"
@@ -571,6 +579,7 @@ const Login: React.FC = () => {
                 </div>
                 <div className="form-group">
                   <input
+                    data-testid="signup-cpf"
                     type="text"
                     className="form-input"
                     placeholder="CPF"
@@ -581,6 +590,7 @@ const Login: React.FC = () => {
                 </div>
                 <div className="form-group">
                   <input
+                    data-testid="signup-phone"
                     type="text"
                     className="form-input"
                     placeholder="Telefone"
@@ -591,6 +601,7 @@ const Login: React.FC = () => {
                 </div>
                 <div className="form-group">
                   <input
+                    data-testid="signup-email"
                     type="email"
                     className="form-input"
                     placeholder="Email"
@@ -601,6 +612,7 @@ const Login: React.FC = () => {
                 </div>
                 <div className="form-group">
                   <input
+                    data-testid="signup-password"
                     type={showPassword.signupPassword ? "text" : "password"}
                     className="form-input"
                     placeholder="Senha"
@@ -610,6 +622,7 @@ const Login: React.FC = () => {
                     onChange={(e) => setSignupPassword(e.target.value)}
                   />
                   <button
+                    data-testid="toggle-password"
                     type="button"
                     className="show-password"
                     onClick={() => handleShowPassword("signupPassword")}
@@ -619,6 +632,7 @@ const Login: React.FC = () => {
                 </div>
                 <div className="form-group">
                   <input
+                    data-testid="signup-confirm-password"
                     type={showPassword.confirmPassword ? "text" : "password"}
                     className="form-input"
                     placeholder="Confirmar senha"
@@ -627,6 +641,7 @@ const Login: React.FC = () => {
                     onChange={(e) => setSignupConfirmPassword(e.target.value)}
                   />
                   <button
+                    data-testid="toggle-confirm-password"
                     type="button"
                     className="show-password"
                     onClick={() => handleShowPassword("confirmPassword")}
@@ -636,6 +651,7 @@ const Login: React.FC = () => {
                 </div>
                 <div className="form-group">
                   <select
+                    data-testid="signup-role"
                     className="form-input"
                     value={signupRole}
                     onChange={(e) => setSignupRole(e.target.value)}
@@ -644,7 +660,11 @@ const Login: React.FC = () => {
                     <option value="admin">Administrador</option>
                   </select>
                 </div>
-                <button type="submit" className="submit-btn">
+                <button
+                  data-testid="signup-submit-btn"
+                  type="submit"
+                  className="submit-btn"
+                >
                   Criar Conta
                 </button>
               </form>
