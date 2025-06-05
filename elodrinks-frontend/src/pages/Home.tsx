@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Carousel from "../pages/Carousel";
-import ServiceList from "../pages/ServiceList"
-import Cardapio from "../pages/OptionalItemsList"
-import UserControl from "../pages/UserControl"
+import ServiceList from "../pages/ServiceList";
+import Cardapio from "../pages/OptionalItemsList";
+import UserControl from "../pages/UserControl";
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // slide automático do banner 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % 3);
@@ -16,10 +17,75 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  // lógica de count-up que repete
+  const empresasRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const sectionEmpresas = empresasRef.current;
+    if (!sectionEmpresas) return;
+
+    // seleciona todos os <h3 data-target> dentro de empresas
+    const counters = sectionEmpresas.querySelectorAll<HTMLHeadingElement>(
+      "h3[data-target]"
+    );
+
+    // função que anima um <h3> de 0 até o data-target
+    function animateCounter(counterEl: HTMLHeadingElement) {
+      const target = parseInt(counterEl.getAttribute("data-target")!, 10);
+      let current = 0;
+      const duration = 1500; // 1,5s
+      const stepIncrement = target / (duration / 16); 
+
+      function step() {
+        current += stepIncrement;
+        if (current < target) {
+          counterEl.textContent = Math.ceil(current).toString();
+          requestAnimationFrame(step);
+        } else {
+          counterEl.textContent = target.toString();
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    // quando a seção sair da tela, zera todos os counters para executar dnv
+    function resetCounters() {
+      counters.forEach((c) => {
+        c.textContent = "0";
+      });
+    }
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5, // dispara quando 50% da seção estiver visível
+    };
+
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          counters.forEach((h3) => animateCounter(h3));
+        } else {
+          resetCounters();
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    observer.observe(sectionEmpresas);
+
+    return () => {
+      if (sectionEmpresas) {
+        observer.unobserve(sectionEmpresas);
+      }
+    };
+  }, []);
+
   return (
     <div>
       <Header />
-      <UserControl/>
+      <UserControl />
 
       {/* HERO SECTION */}
       <section className="hero-section" id="home">
@@ -58,8 +124,8 @@ export default function Home() {
               <h2>SEU DRINK EM NOSSAS MÃOS</h2>
               <p>
                 Sabe aquela alegria que simples detalhes nos proporcionam, como
-                um abraço, um beijo, um drink com quem tanto amamos… A companhia
-                de quem é importante para nós?
+                um abraço, um beijo, um drink com quem tanto amamos… A
+                companhia de quem é importante para nós?
               </p>
               <p>
                 Foram esses sentimentos que nos motivaram a abrir a Elo Drinks.
@@ -95,19 +161,25 @@ export default function Home() {
       <Cardapio />
 
       {/* ELEGÂNCIA E EMPRESAS ATENDIDAS */}
-      <section className="empresas" style={{ padding: "2rem" }} id="parceiros">
+      <section
+        className="empresas"
+        style={{ padding: "2rem" }}
+        id="parceiros"
+        ref={empresasRef} 
+      >
         <h2>O SABOR DA ELEGÂNCIA EM CADA GOLE</h2>
         <div className="flexBoxGeral">
           <div className="grid-3">
-            <h3>25</h3>
+          
+            <h3 data-target="25">0</h3>
             <p>CIDADES ATENDIDAS</p>
           </div>
           <div className="grid-3">
-            <h3>1200</h3>
+            <h3 data-target="1200">0</h3>
             <p>HORAS DE EVENTO</p>
           </div>
           <div className="grid-3">
-            <h3>56</h3>
+            <h3 data-target="56">0</h3>
             <p>EMPRESAS ATENDIDAS</p>
           </div>
         </div>
@@ -118,7 +190,7 @@ export default function Home() {
               A Elo Drinks é especializada em serviços de coquetelaria para
               eventos sociais e eventos corporativos. Hoje ela vem sendo
               reconhecida no mercado de eventos corporativos e de wedding por
-              indicações dos melhores assessores, decoradores e espaço de
+              indicações dos melhores assessores, decoradores e espaços de
               eventos da Grande São Paulo por terem ótimos profissionais e um
               excelente atendimento.
             </p>
@@ -143,11 +215,11 @@ export default function Home() {
           </div>
         </div>
 
-        <h2>ALGUMAS EMPRES AS ATENDIDAS</h2>
+        <h2>ALGUMAS EMPRESAS ATENDIDAS</h2>
         <Carousel />
       </section>
 
-      {/* FOTOS INSTAGRAM*/}
+      {/* FOTOS INSTAGRAM */}
       <section
         className="fotos"
         style={{ backgroundColor: "#9D4815", padding: "2rem" }}
@@ -183,7 +255,10 @@ export default function Home() {
         <h2>FALE CONOSCO</h2>
         <p>Para mais informações sobre nossos serviços, entre em contato</p>
 
-        <form action="https://formsubmit.co/marcos1221marcos1221@gmail.com" method="POST">
+        <form
+          action="https://formsubmit.co/seuemail@exemplo.com"
+          method="POST"
+        >
           <div className="boxName">
             <input
               type="text"
@@ -223,7 +298,7 @@ export default function Home() {
           </div>
 
           <button type="submit" className="btn-contato">
-              <p>ENTRE EM CONTATO</p>
+            <p>ENTRE EM CONTATO</p>
           </button>
         </form>
       </section>
