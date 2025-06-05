@@ -36,7 +36,7 @@ jobs:
         run: npm run build
 
       - name: Upload build artefacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: build-dist
           path: dist/
@@ -66,7 +66,7 @@ jobs:
         run: npm ci
 
       - name: Download build artefacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v3.1.2
         with:
           name: build-dist
           path: dist/
