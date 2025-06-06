@@ -22,9 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Ignorar relatorio de cobertura do jest
-coverage/
-*.lcov
-coverage-final.json
-clover.xml
