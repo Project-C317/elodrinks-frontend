@@ -130,6 +130,12 @@ nav {
   overflow: hidden;
 }
 
+@media screen and (min-width: 1600px) {
+  .hero-section {
+    height: 950px;
+  }
+}
+
 .hero-section img {
   width: 100%;
   height: 100%;
@@ -201,7 +207,6 @@ nav {
 
 .text-sectionInfo {
   max-width: 35%;
-  margin-right: 15%;
 }
 
 .line1 {
@@ -859,14 +864,16 @@ aside {
   transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 
-.botaoDeslogar {
+.botaoDeslogar,
+.botaoCarrinho {
   background: transparent;
   border: none;
   cursor: pointer;
   transition: 0.3s;
 }
 
-.botaoDeslogar:hover svg {
+.botaoDeslogar:hover svg,
+.botaoCarrinho:hover svg {
   fill: #e0ceaa;
 }
 

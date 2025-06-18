@@ -5,19 +5,25 @@ export function Cardapio() {
   const [modalOpen, setModalOpen] = useState(false);
   const [optionalItems, setOptionalItems] = useState<OptionalItem[]>([]);
   const [loading, setLoading] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
 
-  const handleOpenModal = async () => {
+  const handleOpenModal = async (category: string) => {
+    setSelectedCategory(category); // guarda a categoria clicada
     setModalOpen(true);
     setLoading(true);
     try {
       const response = await optionalApi.getAllOptionalItems();
-      const normalizedItems = response.data.map((item: any) => ({
-        _id: item._id,
-        Name: item.Name,
-        PricePerUnit: item.PricePerUnit,
-        Quantity: item.Quantity,
-        IndividualPrice: item.IndividualPrice,
-      }));
+      // Filtra os itens pela categoria selecionada
+      const normalizedItems = response.data
+        .filter((item: any) => item.Category === category)
+        .map((item: any) => ({
+          _id: item._id,
+          Name: item.Name,
+          PricePerUnit: item.PricePerUnit,
+          Quantity: item.Quantity,
+          IndividualPrice: item.IndividualPrice,
+          Category: item.Category,
+        }));
       setOptionalItems(normalizedItems);
     } catch (error) {
       console.error("Erro ao buscar itens opcionais", error);
@@ -29,6 +35,24 @@ export function Cardapio() {
   const handleCloseModal = () => {
     setModalOpen(false);
     setOptionalItems([]);
+    setSelectedCategory("");
+  };
+
+  const addToCart = (item: OptionalItem) => {
+    const storedCart = JSON.parse(localStorage.getItem("carrinho") || "[]");
+
+    const cartItem = {
+      ...item,
+      FinalBudget: item.IndividualPrice,
+      type: "optional",
+    };
+
+    storedCart.push(cartItem);
+    localStorage.setItem("carrinho", JSON.stringify(storedCart));
+
+    window.dispatchEvent(new Event("carrinhoAtualizado"));
+
+    alert("Serviço adicionado ao carrinho!");
   };
 
   return (
@@ -45,7 +69,7 @@ export function Cardapio() {
       <div className="flexBoxGeral pt1">
         <div
           className="grid-3"
-          onClick={handleOpenModal}
+          onClick={() => handleOpenModal("drink especial")}
           style={{ cursor: "pointer" }}
         >
           <svg
@@ -67,7 +91,7 @@ export function Cardapio() {
 
         <div
           className="grid-3"
-          onClick={handleOpenModal}
+          onClick={() => handleOpenModal("bar de caipirinhas")}
           style={{ cursor: "pointer" }}
         >
           <svg
@@ -90,7 +114,7 @@ export function Cardapio() {
 
         <div
           className="grid-3"
-          onClick={handleOpenModal}
+          onClick={() => handleOpenModal("soft drinks")}
           style={{ cursor: "pointer" }}
         >
           <svg
@@ -196,7 +220,7 @@ export function Cardapio() {
             >
               &times;
             </button>
-            <h2 style={{ marginBottom: "2rem" }}>CARDÁPIO</h2>
+            <h2 style={{ marginBottom: "2rem" }}>{selectedCategory}</h2>
             {loading ? (
               <p>Carregando...</p>
             ) : (
@@ -213,10 +237,12 @@ export function Cardapio() {
                       <b>Preço por unidade:</b> R${" "}
                       {item.PricePerUnit.toFixed(2)}
                     </p>
-                    <p>
-                      <b>Preço individual:</b> R${" "}
-                      {item.IndividualPrice.toFixed(2)}
-                    </p>
+                    <button
+                      className="botaoSelecionarServico"
+                      onClick={() => addToCart(item)}
+                    >
+                      Selecionar serviço
+                    </button>
                     <div className="p-linha"></div>
                   </div>
                 ))}

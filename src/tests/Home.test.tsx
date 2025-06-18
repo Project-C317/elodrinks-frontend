@@ -1,5 +1,6 @@
 import { render, screen, act, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { MemoryRouter } from "react-router-dom"; // ✅ Importado
 import Home from "../../src/pages/Home";
 
 // mock do componente UserControl e ServiceList
@@ -47,8 +48,13 @@ afterAll(() => {
 describe("Banner rotativo (useEffect + setInterval)", () => {
   beforeEach(() => {
     jest.useFakeTimers();
-    render(<Home />);
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>
+    );
   });
+
   afterEach(() => {
     jest.clearAllTimers();
   });
@@ -77,10 +83,16 @@ describe("Count-up animado (IntersectionObserver)", () => {
   let section: HTMLElement;
 
   beforeEach(() => {
-    render(<Home />);
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>
+    );
+
     section = screen
       .getByText(/O SABOR DA ELEGÂNCIA EM CADA GOLE/i)
       .closest("section")!;
+
     counters = Array.from(
       section.querySelectorAll("h3[data-target]")
     ) as HTMLHeadingElement[];

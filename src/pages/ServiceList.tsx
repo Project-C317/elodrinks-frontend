@@ -22,8 +22,6 @@ const ServiceList = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  
-
   useEffect(() => {
     serviceApi
       .getAllServices()

@@ -102,6 +102,7 @@ export interface OptionalItem {
   PricePerUnit: number;
   Quantity: number;
   IndividualPrice: number;
+  Category: string;
 }
 
 export const publicApi = {

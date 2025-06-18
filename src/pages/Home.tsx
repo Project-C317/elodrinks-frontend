@@ -5,11 +5,12 @@ import Carousel from "../pages/Carousel";
 import ServiceList from "../pages/ServiceList";
 import Cardapio from "../pages/OptionalItemsList";
 import UserControl from "../pages/UserControl";
+import CartModal from "../pages/CartModal";
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // slide automático do banner 
+  // slide automático do banner
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % 3);
@@ -25,16 +26,15 @@ export default function Home() {
     if (!sectionEmpresas) return;
 
     // seleciona todos os <h3 data-target> dentro de empresas
-    const counters = sectionEmpresas.querySelectorAll<HTMLHeadingElement>(
-      "h3[data-target]"
-    );
+    const counters =
+      sectionEmpresas.querySelectorAll<HTMLHeadingElement>("h3[data-target]");
 
     // função que anima um <h3> de 0 até o data-target
     function animateCounter(counterEl: HTMLHeadingElement) {
       const target = parseInt(counterEl.getAttribute("data-target")!, 10);
       let current = 0;
       const duration = 1500; // 1,5s
-      const stepIncrement = target / (duration / 16); 
+      const stepIncrement = target / (duration / 16);
 
       function step() {
         current += stepIncrement;
@@ -49,7 +49,6 @@ export default function Home() {
       requestAnimationFrame(step);
     }
 
-    // quando a seção sair da tela, zera todos os counters para executar dnv
     function resetCounters() {
       counters.forEach((c) => {
         c.textContent = "0";
@@ -72,7 +71,10 @@ export default function Home() {
       });
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions
+    );
     observer.observe(sectionEmpresas);
 
     return () => {
@@ -86,6 +88,7 @@ export default function Home() {
     <div>
       <Header />
       <UserControl />
+      <CartModal />
 
       {/* HERO SECTION */}
       <section className="hero-section" id="home">
@@ -123,17 +126,14 @@ export default function Home() {
             <div className="text-sectionInfo">
               <h2>SEU DRINK EM NOSSAS MÃOS</h2>
               <p>
-                Sabe aquela alegria que simples detalhes nos proporcionam, como
-                um abraço, um beijo, um drink com quem tanto amamos… A
-                companhia de quem é importante para nós?
+                <b>MISSÃO</b> <br /> Proporcionar momentos únicos e inesquecíveis por meio da coquetelaria, levando alegria e sofisticação a cada celebração.
               </p>
               <p>
-                Foram esses sentimentos que nos motivaram a abrir a Elo Drinks.
-                Queremos que vivenciem a alegria que é a celebração da vida e do
-                amor.
+               <b>VISÃO</b> <br /> Ser referência no mercado de eventos pelo padrão de qualidade e criatividade, ampliando sua presença tanto no segmento social quanto no corporativo.
               </p>
+              <p><b>VALORES</b> <br /> Excelência, personalização, comprometimento, atendimento humanizado, sustentabilidade.</p>
             </div>
-            <div
+            {/* <div
               style={{
                 position: "relative",
                 marginTop: "20px",
@@ -149,6 +149,9 @@ export default function Home() {
                 alt="Equipe 2"
                 className="fotoFrente"
               />
+            </div> */}
+            <div>
+              <img src="/images/triade.webp" alt="Foto Triade" />
             </div>
           </div>
         </div>
@@ -165,12 +168,11 @@ export default function Home() {
         className="empresas"
         style={{ padding: "2rem" }}
         id="parceiros"
-        ref={empresasRef} 
+        ref={empresasRef}
       >
         <h2>O SABOR DA ELEGÂNCIA EM CADA GOLE</h2>
         <div className="flexBoxGeral">
           <div className="grid-3">
-          
             <h3 data-target="25">0</h3>
             <p>CIDADES ATENDIDAS</p>
           </div>
@@ -255,10 +257,7 @@ export default function Home() {
         <h2>FALE CONOSCO</h2>
         <p>Para mais informações sobre nossos serviços, entre em contato</p>
 
-        <form
-          action="https://formsubmit.co/seuemail@exemplo.com"
-          method="POST"
-        >
+        <form action="https://formsubmit.co/seuemail@exemplo.com" method="POST">
           <div className="boxName">
             <input
               type="text"

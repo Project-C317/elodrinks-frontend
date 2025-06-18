@@ -4,8 +4,6 @@ import Config from "../pages/Config"
 import Login from "../pages/Login"
 import ServiceList from "../pages/ServiceList"
 import OptionalItemsList from "../pages/OptionalItemsList"
-import Carrinho from "../pages/Carrinho";
-import Agradecimento from "../pages/Agradecimento";
 
 export default function AppRoutes() {
   return (
@@ -16,8 +14,9 @@ export default function AppRoutes() {
         <Route path="/config" element={<Config />} />
         <Route path="/servicos" element={<ServiceList />} />
          <Route path="/optional-items" element={<OptionalItemsList />} /> 
-       <Route path="/carrinho" element={<Carrinho />} />
-       <Route path="/agradecimento" element={<Agradecimento />} />
+        {/* Você pode adicionar outras rotas abaixo, ex: */}
+        {/* <Route path="/sobre" element={<About />} /> */}
+        {/* <Route path="/contato" element={<Contact />} /> */}
       </Routes>
     </BrowserRouter>
   )

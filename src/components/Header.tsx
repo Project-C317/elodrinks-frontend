@@ -1,60 +1,9 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 
 export default function Header() {
-  const [cartSize, setCartSize] = useState(0);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-  const atualizarCarrinho = () => {
-    const carrinho = JSON.parse(localStorage.getItem("carrinho") || "[]");
-    setCartSize(carrinho.length);
-  };
-
-  atualizarCarrinho(); 
-
-  window.addEventListener("carrinhoAtualizado", atualizarCarrinho);
-
-  return () => {
-    window.removeEventListener("carrinhoAtualizado", atualizarCarrinho);
-  };
-  }, []);
-  const goToCarrinho = () => {
-    navigate("/carrinho");
-  };
   return (
     <header className='menu-fixo'>
       <nav>
-        {/* Carrinho*/}
-        <div
-          style={{
-            position: "fixed",
-            top: "16px",
-            left: "16px",
-            cursor: "pointer",
-            zIndex: 1001, // acima do menu
-          }}
-          onClick={goToCarrinho}
-        >
-          <img src="carrinho.svg" alt="Carrinho" width={25} height={40} />
-          {cartSize > 0 && (
-            <span
-              style={{
-                position: "absolute",
-                top: "-5px",
-                right: "-10px",
-                backgroundColor: "#c49b66",
-                color: "white",
-                borderRadius: "100%",
-                padding: "0.01rem 0.4rem",
-                fontSize: "0.75rem",
-              }}
-            >
-              {cartSize}
-            </span>
-          )}
-        </div>
         <a href='#nossos-servicos'>NOSSOS SERVIÇOS</a>
         <a href='#cardapio'>CARDAPIO</a>
         <a href='#home'>

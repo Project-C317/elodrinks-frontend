@@ -27,6 +27,7 @@ export default function Config() {
     PricePerUnit: 0,
     Quantity: 0,
     IndividualPrice: 0,
+    Category: "",
   });
   const [menu, setMenu] = useState("createService");
 
@@ -69,6 +70,7 @@ export default function Config() {
       PricePerUnit: 0,
       Quantity: 0,
       IndividualPrice: 0,
+      Category: "",
     });
     fetchData();
   };
@@ -301,6 +303,16 @@ export default function Config() {
               />
             </div>
             <div className="lateral">
+              <p>Categoria:</p>
+              <input
+                placeholder="Categoria"
+                value={newOptional.Category}
+                onChange={(e) =>
+                  setNewOptional({ ...newOptional, Category: e.target.value })
+                }
+              />
+            </div>
+            <div className="lateral">
               <p>Preço por unidade R$:</p>
               <input
                 type="number"
@@ -359,6 +371,7 @@ export default function Config() {
                   <div style={{ marginBottom: "10px", textAlign: "center" }}>
                     <b>{o.Name}</b>
                   </div>
+                  <div>Categoria: {o.Category}</div>
                   <div>Quantidade: {o.Quantity}</div>
                   <div>Preço por unidade: R${o.PricePerUnit}</div>
                   <div>Preço individual: R${o.IndividualPrice}</div>
