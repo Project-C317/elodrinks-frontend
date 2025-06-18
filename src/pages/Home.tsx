@@ -59,7 +59,7 @@ export default function Home() {
     const observerOptions = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.5, // dispara quando 50% da seção estiver visível
+      threshold: 0.5,
     };
 
     const observerCallback: IntersectionObserverCallback = (entries) => {
@@ -222,26 +222,26 @@ export default function Home() {
       {/* FOTOS INSTAGRAM */}
       <section
         className="fotos"
-        style={{ backgroundColor: "#9D4815", padding: "2rem" }}
+        style={{ backgroundColor: "#101820", padding: "2rem" }}
         id="galeria"
       >
         <h2>FOTOS</h2>
         <p>Confira nossa galeria de fotos!</p>
         <div className="fundoFotos">
           <div className="grid1">
-            <img src="/images/equipe2.png" alt="Foto 4" />
-            <img src="/images/equipe.png" alt="Foto 5" />
-            <img src="/images/equipe2.png" alt="Foto 6" />
+            <img src="/images/galeria-1.webp" alt="Foto 7" />
+            <img src="/images/galeria-3.webp" alt="Foto 8" />
+            <img src="/images/galeria-2.webp" alt="Foto 9" />
           </div>
           <div className="grid2">
-            <img src="/images/equipe.png" alt="Foto 1" />
-            <img src="/images/equipe2.png" alt="Foto 2" />
-            <img src="/images/equipe.png" alt="Foto 3" />
+            <img src="/images/galeria-4.webp" alt="Foto 1" />
+            <img src="/images/galeria-5.webp" alt="Foto 2" />
+            <img src="/images/galeria-6.webp" alt="Foto 3" />
           </div>
           <div className="grid3">
-            <img src="/images/equipe2.png" alt="Foto 4" />
-            <img src="/images/equipe.png" alt="Foto 5" />
-            <img src="/images/equipe2.png" alt="Foto 6" />
+            <img src="/images/galeria-7.webp" alt="Foto 4" />
+            <img src="/images/galeria-8.webp" alt="Foto 5" />
+            <img src="/images/galeria-9.webp" alt="Foto 6" />
           </div>
         </div>
       </section>
