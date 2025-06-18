@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { serviceApi, Service } from "../services/api";
-import { useNavigate } from "react-router-dom";
 
 // Função para mapear os dados da API para o formato esperado
 export const mapServices = (services: any[]): Service[] => {
@@ -23,7 +22,7 @@ const ServiceList = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const navigate = useNavigate();
+  
 
   useEffect(() => {
     serviceApi
