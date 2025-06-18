@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { serviceApi, Service } from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 // Função para mapear os dados da API para o formato esperado
 export const mapServices = (services: any[]): Service[] => {
@@ -22,6 +23,7 @@ const ServiceList = () => {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     serviceApi
@@ -39,6 +41,15 @@ const ServiceList = () => {
 
   const closeModal = () => {
     setSelectedService(null);
+  };
+
+  const handleSelectService = (service: Service) => {
+    const existingCart = JSON.parse(localStorage.getItem("carrinho") || "[]");
+    const updatedCart = [...existingCart, service];
+    localStorage.setItem("carrinho", JSON.stringify(updatedCart));
+
+    // Redireciona para o carrinho
+    navigate("/carrinho");
   };
 
   if (loading) return <p>Carregando serviços...</p>;
@@ -83,7 +94,7 @@ const ServiceList = () => {
           <div
             className="div-modalServicos"
             onClick={(e) => e.stopPropagation()}
-          >
+            >
             <button onClick={closeModal} className="fechar-modalServicos">
               &times;
             </button>
@@ -120,6 +131,11 @@ const ServiceList = () => {
               <strong>Pagamento final:</strong> R${" "}
               {selectedService.FinalPayment.toFixed(2)}
             </p>
+            <button
+              className="botaoSelecionarServico"
+              onClick={() => handleSelectService(selectedService)}>
+              Selecionar serviço
+            </button>
           </div>
         </div>
       )}
