@@ -7,17 +7,26 @@ export default function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
+  const atualizarCarrinho = () => {
     const carrinho = JSON.parse(localStorage.getItem("carrinho") || "[]");
     setCartSize(carrinho.length);
-  }, []);
+  };
 
+  atualizarCarrinho(); 
+
+  window.addEventListener("carrinhoAtualizado", atualizarCarrinho);
+
+  return () => {
+    window.removeEventListener("carrinhoAtualizado", atualizarCarrinho);
+  };
+  }, []);
   const goToCarrinho = () => {
     navigate("/carrinho");
   };
   return (
     <header className='menu-fixo'>
       <nav>
-        {/* Carrinho no canto superior esquerdo */}
+        {/* Carrinho*/}
         <div
           style={{
             position: "fixed",

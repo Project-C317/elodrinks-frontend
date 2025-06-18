@@ -47,9 +47,10 @@ const ServiceList = () => {
     const existingCart = JSON.parse(localStorage.getItem("carrinho") || "[]");
     const updatedCart = [...existingCart, service];
     localStorage.setItem("carrinho", JSON.stringify(updatedCart));
+    
+    window.dispatchEvent(new Event("carrinhoAtualizado"));
 
-    // Redireciona para o carrinho
-    navigate("/carrinho");
+    alert("Serviço adicionado ao carrinho!");
   };
 
   if (loading) return <p>Carregando serviços...</p>;
