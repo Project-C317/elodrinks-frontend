@@ -400,6 +400,43 @@ nav {
   color: #5d4a38;
 }
 
+.modalServicos {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 999; /* Certifique-se de que está acima de todos os cards */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-modalServicos {
+  background-color: #1a1a1a;
+  padding: 2rem;
+  border-radius: 8px;
+  position: relative;
+  z-index: 1000; /* Garante que o botão fique acima da imagem */
+  color: white;
+  max-width: 90%;
+}
+
+.botaoSelecionarServico {
+  position: relative;
+  z-index: 2;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #c49b66;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
 .empresas h3 {
   font-size: 60px;
   text-align: center;
