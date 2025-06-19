@@ -743,44 +743,6 @@
 <a name='L678'></a><a href='#L678'>678</a>
 <a name='L679'></a><a href='#L679'>679</a>
 <a name='L680'></a><a href='#L680'>680</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -924,6 +886,44 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -1421,45 +1421,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { publicApi } from "../services/api";
-import { FiLock, FiUnlock } from "react-icons/fi";
-import { jwtDecode } from "jwt-decode";
-&nbsp;
-type User = {
-  id: number;
-  name: string;
-  surname: string;
-  age: string;
-  cpf: string;
-  email: string;
-  phone: string;
-  password: string;
-  createdAt: string;
-};
-&nbsp;
-function getInitialUsers(): User[] {
-  const users = localStorage.getItem("users");
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (users) <span class="cstat-no" title="statement not covered" >return JSON.parse(users);</span>
-  const demoUsers: User[] = [
-    {
-      id: 1,
-      name: "João",
-      surname: "Silva",
-      age: "30",
-      cpf: "123.456.789-00",
-      email: "joao@exemplo.com",
-      phone: "(11) 91234-5678",
-      password: "123456",
-      createdAt: new Date().toISOString(),
-    },
-  ];
-  localStorage.setItem("users", JSON.stringify(demoUsers));
-  return demoUsers;
-}
-&nbsp;
-// CSS-in-JS string
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// CSS-in-JS string
 const style = `
   /* Vídeo atrás */
   .video-bg {
@@ -1604,6 +1566,44 @@ const style = `
     .form-container { padding: 30px 20px; width: auto; }
   }
 `;
+&nbsp;
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { publicApi } from "../services/api";
+import { FiLock, FiUnlock } from "react-icons/fi";
+import { jwtDecode } from "jwt-decode";
+&nbsp;
+type User = {
+  id: number;
+  name: string;
+  surname: string;
+  age: string;
+  cpf: string;
+  email: string;
+  phone: string;
+  password: string;
+  createdAt: string;
+};
+&nbsp;
+function getInitialUsers(): User[] {
+  const users = localStorage.getItem("users");
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (users) <span class="cstat-no" title="statement not covered" >return JSON.parse(users);</span>
+  const demoUsers: User[] = [
+    {
+      id: 1,
+      name: "João",
+      surname: "Silva",
+      age: "30",
+      cpf: "123.456.789-00",
+      email: "joao@exemplo.com",
+      phone: "(11) 91234-5678",
+      password: "123456",
+      createdAt: new Date().toISOString(),
+    },
+  ];
+  localStorage.setItem("users", JSON.stringify(demoUsers));
+  return demoUsers;
+}
 &nbsp;
 const Login: React.FC = () =&gt; {
   const [isLogin, setIsLogin] = useState(true);
@@ -2107,7 +2107,7 @@ export default Login;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-06-18T23:14:56.716Z
+                at 2025-06-19T18:25:24.728Z
             </div>
         <script src="../prettify.js"></script>
         <script>

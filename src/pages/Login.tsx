@@ -1,41 +1,3 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { publicApi } from "../services/api";
-import { FiLock, FiUnlock } from "react-icons/fi";
-import { jwtDecode } from "jwt-decode";
-
-type User = {
-  id: number;
-  name: string;
-  surname: string;
-  age: string;
-  cpf: string;
-  email: string;
-  phone: string;
-  password: string;
-  createdAt: string;
-};
-
-function getInitialUsers(): User[] {
-  const users = localStorage.getItem("users");
-  if (users) return JSON.parse(users);
-  const demoUsers: User[] = [
-    {
-      id: 1,
-      name: "João",
-      surname: "Silva",
-      age: "30",
-      cpf: "123.456.789-00",
-      email: "joao@exemplo.com",
-      phone: "(11) 91234-5678",
-      password: "123456",
-      createdAt: new Date().toISOString(),
-    },
-  ];
-  localStorage.setItem("users", JSON.stringify(demoUsers));
-  return demoUsers;
-}
-
 // CSS-in-JS string
 const style = `
   /* Vídeo atrás */
@@ -181,6 +143,44 @@ const style = `
     .form-container { padding: 30px 20px; width: auto; }
   }
 `;
+
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { publicApi } from "../services/api";
+import { FiLock, FiUnlock } from "react-icons/fi";
+import { jwtDecode } from "jwt-decode";
+
+type User = {
+  id: number;
+  name: string;
+  surname: string;
+  age: string;
+  cpf: string;
+  email: string;
+  phone: string;
+  password: string;
+  createdAt: string;
+};
+
+function getInitialUsers(): User[] {
+  const users = localStorage.getItem("users");
+  if (users) return JSON.parse(users);
+  const demoUsers: User[] = [
+    {
+      id: 1,
+      name: "João",
+      surname: "Silva",
+      age: "30",
+      cpf: "123.456.789-00",
+      email: "joao@exemplo.com",
+      phone: "(11) 91234-5678",
+      password: "123456",
+      createdAt: new Date().toISOString(),
+    },
+  ];
+  localStorage.setItem("users", JSON.stringify(demoUsers));
+  return demoUsers;
+}
 
 const Login: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);

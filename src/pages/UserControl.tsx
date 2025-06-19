@@ -15,6 +15,10 @@ export default function UserControl() {
     navigate("/home");
   };
 
+  const handleGoAdm = () => {
+    navigate("/config");
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -59,17 +63,20 @@ export default function UserControl() {
       </button>
 
       {showMenu && (
-        <div className="botaoDeslogar1">
-          <button className="botaoDeslogar2" onClick={() => setShowMenu(false)}>
-            Cancelar
-          </button>
-          <button className="botaoDeslogar4" onClick={handleGoHome}>
-             Home
-          </button>
-          <button className="botaoDeslogar3" onClick={handleLogout}>
-            Deslogar
-          </button>
-        </div>
+        <>
+          <div className="overlay" onClick={() => setShowMenu(false)} />
+          <div className={`botaoDeslogar1 ${showMenu ? "open" : ""}`}>
+            <button className="botaoDeslogar4" onClick={handleGoHome}>
+              Home
+            </button>
+            <button className="botaoDeslogar4" onClick={handleGoAdm}>
+              Administrador
+            </button>
+            <button className="botaoDeslogar3" onClick={handleLogout}>
+              Deslogar
+            </button>
+          </div>
+        </>
       )}
     </div>
   );

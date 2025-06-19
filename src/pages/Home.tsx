@@ -8,17 +8,34 @@ import UserControl from "../pages/UserControl";
 import CartModal from "../pages/CartModal";
 
 export default function Home() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const bannerTexts = [
+    {
+      title: "Drinks autorais desenvolvidos por especialistas em mixologia",
+    },
+    {
+      title: "Personalização total de cardápios e experiências",
+    },
+    {
+      title: "Equipe treinada, envolvente e altamente profissional",
+    },
+  ];
 
-  // slide automático do banner
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [fade, setFade] = useState(false);
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % 3);
+      setFade(true); // inicia fade-out
+
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % bannerTexts.length);
+        setFade(false); // inicia fade-in da nova imagem
+      }, 300); // tempo do fade-out
     }, 5000);
+
     return () => clearInterval(interval);
   }, []);
 
-  // lógica de count-up que repete
   const empresasRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -95,13 +112,10 @@ export default function Home() {
         <img
           src={`/images/banner${currentIndex + 1}.jpg`}
           alt={`Banner ${currentIndex + 1}`}
+          className={`hero-image ${fade ? "fade-out" : "fade-in"}`}
         />
         <div className="divTexto">
-          <h1>
-            Trabalhamos com os melhores produtos do mercado,
-            <br />
-            insumos frescos e ingredientes artesanais.
-          </h1>
+          <h1>{bannerTexts[currentIndex].title}</h1>
         </div>
       </section>
 
@@ -126,12 +140,19 @@ export default function Home() {
             <div className="text-sectionInfo">
               <h2>SEU DRINK EM NOSSAS MÃOS</h2>
               <p>
-                <b>MISSÃO</b> <br /> Proporcionar momentos únicos e inesquecíveis por meio da coquetelaria, levando alegria e sofisticação a cada celebração.
+                <b>MISSÃO</b> <br /> Proporcionar momentos únicos e
+                inesquecíveis por meio da coquetelaria, levando alegria e
+                sofisticação a cada celebração.
               </p>
               <p>
-               <b>VISÃO</b> <br /> Ser referência no mercado de eventos pelo padrão de qualidade e criatividade, ampliando sua presença tanto no segmento social quanto no corporativo.
+                <b>VISÃO</b> <br /> Ser referência no mercado de eventos pelo
+                padrão de qualidade e criatividade, ampliando sua presença tanto
+                no segmento social quanto no corporativo.
               </p>
-              <p><b>VALORES</b> <br /> Excelência, personalização, comprometimento, atendimento humanizado, sustentabilidade.</p>
+              <p>
+                <b>VALORES</b> <br /> Excelência, personalização,
+                comprometimento, atendimento humanizado, sustentabilidade.
+              </p>
             </div>
             {/* <div
               style={{
@@ -231,19 +252,24 @@ export default function Home() {
         <p>Confira nossa galeria de fotos!</p>
         <div className="fundoFotos">
           <div className="grid1">
-            <img src="/images/galeria-1.webp" alt="Foto 7" />
-            <img src="/images/galeria-3.webp" alt="Foto 8" />
-            <img src="/images/galeria-2.webp" alt="Foto 9" />
+            <img src="/images/galeria-1.webp" alt="Foto 1" />
+            <img src="/images/galeria-3.webp" alt="Foto 2" />
+            <img src="/images/galeria-2.webp" alt="Foto 3" />
           </div>
           <div className="grid2">
-            <img src="/images/galeria-4.webp" alt="Foto 1" />
-            <img src="/images/galeria-5.webp" alt="Foto 2" />
-            <img src="/images/galeria-6.webp" alt="Foto 3" />
+            <img src="/images/galeria-4.webp" alt="Foto 4" />
+            <img src="/images/galeria-5.webp" alt="Foto 5" />
+            <img src="/images/galeria-6.webp" alt="Foto 6" />
           </div>
           <div className="grid3">
-            <img src="/images/galeria-7.webp" alt="Foto 4" />
-            <img src="/images/galeria-8.webp" alt="Foto 5" />
-            <img src="/images/galeria-9.webp" alt="Foto 6" />
+            <img src="/images/galeria-7.webp" alt="Foto 7" />
+            <img src="/images/galeria-8.webp" alt="Foto 8" />
+            <img src="/images/galeria-9.webp" alt="Foto 9" />
+          </div>
+          <div className="grid4">
+            <img src="/images/galeria-11.webp" alt="Foto 11" />
+            <img src="/images/galeria-10.webp" alt="Foto 10" />
+            <img src="/images/galeria-12.webp" alt="Foto 12" />
           </div>
         </div>
       </section>

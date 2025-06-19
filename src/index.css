@@ -49,7 +49,6 @@ nav {
   color: white;
   text-decoration: none;
   padding: 5px 30px 5px 30px;
-  font-size: 186x;
   transition: 0.3s;
 }
 
@@ -136,7 +135,7 @@ nav {
   }
 }
 
-.hero-section img {
+.hero-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -144,7 +143,17 @@ nav {
   top: 0;
   left: 0;
   z-index: 1;
-  animation: zoomEffect 5s ease-in-out infinite;
+  animation: zoomEffect 5s ease-in-out forwards;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+.fade-out {
+  opacity: 0.5;
+}
+
+.fade-in {
+  opacity: 1;
 }
 
 @keyframes zoomEffect {
@@ -353,7 +362,25 @@ nav {
   text-decoration: none;
 }
 
-.btn1:hover {
+.botaofinalizar {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.btn5 {
+  background-color: transparent;
+  border: 3px solid #fff;
+  color: #fff;
+  padding: 0.3rem 2rem;
+  font-weight: 700;
+  width: fit-content;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.btn1:hover,
+.btn5:hover {
   background-color: #fff;
   color: #5d4a38;
 }
@@ -431,13 +458,21 @@ nav {
   position: relative;
   z-index: 2;
   margin-top: 1rem;
-  padding: 0.8rem 1.5rem;
-  background-color: #c49b66;
-  color: white;
-  border: none;
-  border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
+  background-color: transparent;
+  border: 3px solid #fff;
+  color: #fff;
+  padding: 0.5rem 2.5rem;
+  font-weight: 700;
+  width: fit-content;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.botaoSelecionarServico:hover {
+  background-color: #fff;
+  color: #101820;
 }
 
 .empresas h3 {
@@ -561,7 +596,7 @@ nav {
   margin: auto;
   padding: 0rem 1rem 1rem 1rem;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .grid1 {
@@ -582,10 +617,17 @@ nav {
   gap: 1.4rem;
   padding: 1.4rem 0rem 2rem 1.4rem;
 }
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.4rem;
+  padding: 1.4rem 0rem 3rem 1.4rem;
+}
 
 .grid1 img,
 .grid2 img,
-.grid3 img {
+.grid3 img,
+.grid4 img {
   width: 100%;
   height: auto;
   border-radius: 8px;
@@ -864,6 +906,16 @@ aside {
   transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .botaoDeslogar,
 .botaoCarrinho {
   background: transparent;
@@ -878,34 +930,46 @@ aside {
 }
 
 .botaoDeslogar1 {
-  margin-top: 8px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  position: absolute;
+  gap: 20px;
+  background-color: #101820;
+  height: 100svh;
   right: 0;
+  top: 0;
+  z-index: -1;
+  position: fixed;
+  padding: 100px 100px 10px 30px;
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform 2.3s ease-out, opacity 0.3s ease-out;
+}
+
+.botaoDeslogar1.open {
+  transform: translateX(0);
+  opacity: 1;
 }
 
 .botaoDeslogar2,
 .botaoDeslogar4,
 .botaoDeslogar3 {
   padding: 8px 15px;
-  background: #f44336;
+  background: none;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: 0.3s;
+  text-align: left;
+  text-transform: uppercase;
+  line-height: 1.5;
+  font-weight: 400;
 }
 
 .botaoDeslogar3:hover,
 .botaoDeslogar2:hover,
 .botaoDeslogar4:hover {
-  transform: scale(1.1);
-}
-
-.optional-list {
-  border-bottom: 1px solid #ffffff40;
+  color: #e0ceaa;
 }
 
 .optional-list p {
@@ -926,10 +990,7 @@ aside {
 }
 
 .div-modalServicos {
-  background-image: linear-gradient(rgb(0 0 0 / 50%), rgb(0 0 0 / 90%)),
-    url("/public/images/equipe1.png");
-  background-size: cover;
-  background-position: top;
+  background-color: #101820;
   padding: 2rem;
   border-radius: 8px;
   max-width: 500px;
@@ -943,7 +1004,6 @@ aside {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(3px);
   z-index: 1;
 }
@@ -979,10 +1039,7 @@ aside {
 }
 
 .div-modalOpcional {
-  background-image: linear-gradient(rgb(0 0 0 / 50%), rgb(0 0 0 / 90%)),
-    url("/public/images/equipe1.png");
-  background-size: cover;
-  background-position: top;
+  background-color: #101820;
   padding: 2rem;
   border-radius: 8px;
   max-width: 500px;
@@ -996,7 +1053,6 @@ aside {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(3px);
   z-index: 1;
 }
@@ -1020,6 +1076,7 @@ aside {
 }
 
 .div-modalOpcional .p-linha {
+  margin-top: 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   position: relative;
   z-index: 1;

@@ -1,6 +1,67 @@
 import { useEffect, useState } from "react";
 import { Service } from "../services/api";
 
+type AgradecimentoProps = {
+  onClose: () => void;
+};
+
+function Agradecimento({ onClose }: AgradecimentoProps) {
+  return (
+    <div
+      className="modal-overlay"
+      onClick={onClose}
+      style={{
+        position: "fixed", top: 0, left: 0, width: "100vw", height: "100vh",
+        backgroundColor: "rgba(0,0,0,0.7)",
+        display: "flex", justifyContent: "center", alignItems: "center",
+        zIndex: 1100,
+      }}
+    >
+      <div
+        className="modal-content"
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          backgroundColor: "#101820",
+          border: "1px solid rgba(255, 255, 255, 0.4)",
+          color: "white",
+          padding: "2rem",
+          borderRadius: "10px",
+          maxWidth: "400px",
+          width: "90%",
+          textAlign: "center",
+          position: "relative",
+        }}
+      >
+        <button
+          onClick={onClose}
+          style={{
+            position: "absolute",
+            top: "0.5rem",
+            right: "0.8rem",
+            background: "transparent",
+            color: "white",
+            border: "none",
+            fontSize: "2rem",
+            cursor: "pointer",
+          }}
+          aria-label="Fechar modal"
+        >
+          ×
+        </button>
+
+        <h2 style={{ marginBottom: "1rem" }}>AGRADECEMOS A SOLICITAÇÃO</h2>
+        <img src="/logo.svg" alt="Logo Elo Drinks" style={{ width: "80px", marginBottom: "1rem" }} />
+        <p style={{ marginBottom: "2rem" }}>Em breve entraremos em contato!</p>
+
+        <button onClick={onClose} className="btn5">
+          Fechar
+        </button>
+      </div>
+    </div>
+  );
+}
+
+
 type GroupedItem = Service & {
   quantity: number;
   type: "service" | "optional";
@@ -9,6 +70,23 @@ type GroupedItem = Service & {
 const CartModal = () => {
   const [groupedItems, setGroupedItems] = useState<GroupedItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+
+  const [showThanks, setShowThanks] = useState(false);
+
+  const loadCart = () => {
+    const storedCart: any[] = JSON.parse(localStorage.getItem("carrinho") || "[]");
+    setGroupedItems(groupCartItems(storedCart));
+  };
+
+  const clearCart = () => {
+    localStorage.removeItem("carrinho");
+    setGroupedItems([]); 
+  };
+
+  const handleCloseThanks = () => {
+    clearCart();    
+    setShowThanks(false); 
+  };
 
   const groupCartItems = (items: any[]): GroupedItem[] => {
     const grouped: { [key: string]: GroupedItem } = {};
@@ -26,13 +104,6 @@ const CartModal = () => {
       }
     }
     return Object.values(grouped);
-  };
-
-  const loadCart = () => {
-    const storedCart: any[] = JSON.parse(
-      localStorage.getItem("carrinho") || "[]"
-    );
-    setGroupedItems(groupCartItems(storedCart));
   };
 
   const removeFromCart = (id: string, type: string = "service") => {
@@ -131,10 +202,11 @@ const CartModal = () => {
             className="modal-content"
             onClick={(e) => e.stopPropagation()}
             style={{
-              backgroundColor: "#1a1a1a",
+              backgroundColor: "#101820",
+              border: "1px solid rgba(255, 255, 255, 0.4)",
               padding: "2rem",
               borderRadius: "10px",
-              maxWidth: "400px",
+              maxWidth: "500px",
               width: "90%",
               color: "white",
               position: "relative",
@@ -149,15 +221,17 @@ const CartModal = () => {
                 background: "transparent",
                 color: "white",
                 border: "none",
-                fontSize: "1.5rem",
+                fontSize: "2.5rem",
                 cursor: "pointer",
               }}
             >
               ×
             </button>
-            <h2 style={{ marginBottom: "1rem" }}>Carrinho</h2>
+            <h2 style={{ marginBottom: "1rem", textAlign: "center" }}>
+              Carrinho
+            </h2>
             {groupedItems.length === 0 ? (
-              <p>Carrinho vazio</p>
+              <p>Vazio. . . </p>
             ) : (
               <ul style={{ listStyle: "none", padding: 0 }}>
                 {groupedItems.map((item) => (
@@ -168,6 +242,7 @@ const CartModal = () => {
                       justifyContent: "space-between",
                       alignItems: "center",
                       marginBottom: "0.5rem",
+                      maxWidth: "400px",
                       backgroundColor: "#333",
                       padding: "0.5rem 1rem",
                       borderRadius: "6px",
@@ -197,9 +272,26 @@ const CartModal = () => {
                 ))}
               </ul>
             )}
+
+            <div
+              className="botaofinalizar"
+              style={{ textAlign: "center", marginTop: "1.5rem" }}
+            >
+              <button
+                className="btn5"
+                onClick={() => {
+                  setShowThanks(true);
+                  setIsOpen(false);
+                }}
+              >
+                FINALIZAR
+              </button>
+            </div>
           </div>
         </div>
       )}
+
+       {showThanks && <Agradecimento onClose={handleCloseThanks} />}
     </>
   );
 };

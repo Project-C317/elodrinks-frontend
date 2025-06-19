@@ -80,7 +80,7 @@ describe("Cardapio component", () => {
 
     // Espera o botão "Selecionar serviço" aparecer no modal
     const addButton = await screen.findByRole("button", {
-      name: /selecionar serviço/i,
+      name: /Adicionar/i,
     });
 
     fireEvent.click(addButton);
