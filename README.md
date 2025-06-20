@@ -46,7 +46,35 @@ Usuários podem simular pacotes de serviços para festas, selecionar serviços a
 🧩 **Repositório:** [Project-C317/elodrinks-frontend](https://github.com/Project-C317/elodrinks-frontend)  
 🔗 **Produção:** [elodrinks.netlify.app](https://elodrinks.netlify.app)
 
----
+</br>
+
+## 🔸 Como Executar Localmente
+
+Siga os passos abaixo para rodar o projeto localmente em sua máquina:
+
+1. **Clone o repositório**
+```bash
+git clone https://github.com/Project-C317/elodrinks-frontend.git
+```
+
+2. **Acesse a pasta do projeto**
+```bash
+cd elodrinks-frontend
+```
+
+3. **Instale as dependências**
+```bash
+npm install
+```
+
+4. **Execute a aplicação**
+```bash
+npm run dev
+```
+
+> Acesse `http://localhost:5173` no navegador para visualizar o projeto.
+
+</br>
 
 ## 🔸 Deployment & Ferramentas
 
@@ -65,7 +93,7 @@ Usuários podem simular pacotes de serviços para festas, selecionar serviços a
 | Desenvolvedor | GitHub | Especialidade |
 |:-------------:|:------:|:-------------:|
 | **Marcos Guerra** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/Marcos1Guerra) | Frontend Development |
-| **Wiliane Carolina** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/wilicarol) | Frontend Development |
+| **Wiliane Carolia** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/wilicarol) | Frontend Development |
 
 </div>
 
